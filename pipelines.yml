@@ -1,0 +1,9 @@
+pipelines:
+  - name: v_simple_pipelines
+    steps:
+
+      - name: v_simple_bash
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
