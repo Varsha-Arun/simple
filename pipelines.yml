@@ -1,9 +1,25 @@
 pipelines:
-  - name: v_simple_pipelines
+  - name: P_stepletTestReports_matrix
     steps:
-
-      - name: v_simple_bash
-        type: Bash
+      - name: s_stepletTestReports
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          inputResources:
+            - name: r_stepletTestReports
+        stepletMultipliers:
+          environmentVariables:
+            - env1: one
         execution:
           onExecute:
-            - printenv
+            - cd $res_r_stepletTestReports_resourcePath
+            - add_run_variables imageTag="master"
+            - add_run_files cachefile.txt my_file
+            - add_pipeline_variables imageName="myimage" domainName="jfrog"
+            - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest
+            - cd $res_r_stepletTestReports_resourcePath
+            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+            - save_tests $res_r_stepletTestReports_resourcePath/test-reports/results.xml
