@@ -4,9 +4,9 @@ pipelines:
       - name: s_stepletTestReports
         type: Matrix
         stepMode: Bash
-        configuration:
-          inputResources:
-            - name: r_stepletTestReports
+#         configuration:
+#           inputResources:
+#             - name: r_stepletTestReports
         stepletMultipliers:
           environmentVariables:
             - env1: one
