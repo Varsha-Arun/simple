@@ -1,11 +1,11 @@
 pipelines:
-  - name: np_u16_static
+  - name: u16_dy_np
     steps:
 
-      - name: np_u16_static
+      - name: u16_dy_np
         type: Bash
         configuration:
-          nodePool: np_u16_static
+          nodePool: u16_dy_np
         execution:
           onExecute:
             - printenv
