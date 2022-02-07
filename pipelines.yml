@@ -1,9 +1,11 @@
 pipelines:
-  - name: v_simple_pipelines
+  - name: np_u16_static
     steps:
 
-      - name: v_simple_bash
+      - name: np_u16_static
         type: Bash
+        configuration:
+          nodePool: np_u16_static
         execution:
           onExecute:
             - printenv
