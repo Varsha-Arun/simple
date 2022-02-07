@@ -1,9 +1,11 @@
 pipelines:
-  - name: v_simple_pipelines
+  - name: v_simple_pipelinetest
     steps:
 
-      - name: v_simple_bash
+      - name: np_cloud_u16_ami_043b8e63d0d3809cd
         type: Bash
+        configuration:
+          nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
         execution:
           onExecute:
             - printenv
