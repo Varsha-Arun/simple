@@ -4,7 +4,7 @@ pipelines:
 
       - name: np_cloud_u16_ami_043b8e63d0d3809cd
         type: Bash
-        configuration:
+#         configuration:
 #           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
 #           integrations:
 #             - name: varsha_bbs
