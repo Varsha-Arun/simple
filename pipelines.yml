@@ -6,11 +6,12 @@ pipelines:
         type: Bash
         configuration:
 #           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
-          integrations:
-            - name: varsha_bbs
+#           integrations:
+#             - name: varsha_bbs
         execution:
           onExecute:
             - printenv
+            - echo "test"
             - echo ${int_varsha_bbs_username}
             - echo ${int_varsha_bbs_password}
 #             - sleep 60m
