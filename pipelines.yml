@@ -2,7 +2,7 @@ pipelines:
   - name: v_simple_pipelinetest
     steps:
 
-      - name: np_cloud_u16_ami_043b8e63d0d3809cd
+      - name: triggerStep
         type: Bash
 #         configuration:
 #           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
@@ -12,6 +12,33 @@ pipelines:
           onExecute:
             - printenv
             - echo "test"
-            - echo ${int_varsha_bbs_username}
-            - echo ${int_varsha_bbs_password}
-#             - sleep 60m
+
+      - name: step1
+        type: Bash
+        configuration:
+          inputSteps:
+            - triggerStep
+        execution:
+          onExecute:
+            - printenv
+            - echo "test"
+                
+      - name: step2
+        type: Bash
+        configuration:
+          inputSteps:
+            - triggerStep
+        execution:
+          onExecute:
+            - printenv
+            - echo "test"
+            
+      - name: step3
+        type: Bash
+        configuration:
+          inputSteps:
+            - triggerStep
+        execution:
+          onExecute:
+            - printenv
+            - echo "test"
