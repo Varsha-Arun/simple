@@ -43,8 +43,9 @@ pipelines:
             - printenv
             - echo "test"
             
-      - name: step4
-        type: Bash
+      - name: stepmatrix
+        type: Matrix
+        mode: Bash
         configuration:
           inputSteps:
             - name: step1
