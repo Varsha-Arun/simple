@@ -42,3 +42,15 @@ pipelines:
           onExecute:
             - printenv
             - echo "test"
+            
+      - name: step4
+        type: Bash
+        configuration:
+          inputSteps:
+            - step1
+            - step2
+            - step3
+        execution:
+          onExecute:
+            - printenv
+            - echo "test"
