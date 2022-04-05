@@ -17,7 +17,7 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - triggerStep
+            - name: triggerStep
         execution:
           onExecute:
             - printenv
@@ -27,7 +27,7 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - triggerStep
+            - name: triggerStep
         execution:
           onExecute:
             - printenv
@@ -37,7 +37,7 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - triggerStep
+            - name: triggerStep
         execution:
           onExecute:
             - printenv
@@ -47,9 +47,9 @@ pipelines:
         type: Bash
         configuration:
           inputSteps:
-            - step1
-            - step2
-            - step3
+            - name: step1
+            - name: step2
+            - name: step3
         execution:
           onExecute:
             - printenv
