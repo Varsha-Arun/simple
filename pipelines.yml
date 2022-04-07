@@ -9,6 +9,8 @@ pipelines:
 #           integrations:
 #             - name: varsha_bbs
         execution:
+          onStart:
+            - docker images
           onExecute:
             - printenv
             - echo "test"
