@@ -1,10 +1,21 @@
+resources:
+  - name: pipelines_master_br_gr
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/pipelines
+      gitProvider: varsha_github
+      branches: 
+        include: master
+        
 pipelines:
   - name: u16_dy_np
     steps:
 
       - name: u16_dy_np
         type: Bash
-#         configuration:
+        configuration:
+          inputResources:
+            - name: pipelines_master_br_gr
 #           nodePool: u16_dy_np
         execution:
           onExecute:
