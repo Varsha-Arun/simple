@@ -14,6 +14,7 @@ pipelines:
           onExecute:
             - cd $res_r_stepletTestReports_resourcePath
             - add_run_variables imageTag="master"
+            - echo "hi" > nano cachefile.txt
             - add_run_files cachefile.txt my_file
             - add_pipeline_variables imageName="myimage" domainName="jfrog"
             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
