@@ -11,7 +11,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - echo "test"
-            - echo ${int_varsha_bbs_username}
-            - echo ${int_varsha_bbs_password}
+#             - echo "test"
+#             - echo ${int_varsha_bbs_username}
+#             - echo ${int_varsha_bbs_password}
 #             - sleep 60m
