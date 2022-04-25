@@ -4,8 +4,8 @@ pipelines:
 
       - name: np_u16_static
         type: Bash
-        configuration:
-          nodePool: np_u16_static
+#         configuration:
+#           nodePool: np_u16_static
         execution:
           onExecute:
             - printenv
