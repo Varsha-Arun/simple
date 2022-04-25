@@ -4,8 +4,8 @@ pipelines:
 
       - name: u16_dy_np
         type: Bash
-        configuration:
-          nodePool: u16_dy_np
+#         configuration:
+#           nodePool: u16_dy_np
         execution:
           onExecute:
             - printenv
