@@ -8,3 +8,4 @@ pipelines:
           onExecute:
             - printenv
             - echo "hi"
+            - echo "hello"
