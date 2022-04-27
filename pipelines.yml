@@ -11,9 +11,9 @@ pipelines:
 
       - name: bash_testreports1
         type: Bash
-        configuration:
-          inputResources:
-            - name: repo_stepletTestReport1
+#         configuration:
+#           inputResources:
+#             - name: repo_stepletTestReport1
         execution:
           onExecute:
             - printenv
