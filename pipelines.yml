@@ -1,12 +1,12 @@
 pipelines:
-  - name: np_u16_static
+  - name: p_np_u18
     steps:
 
-      - name: np_u16_static
+      - name: s_np_u18
         type: Bash
 #         configuration:
 #           nodePool: np_u16_static
         execution:
           onExecute:
             - printenv
-            - sleep 60m
+#             - sleep 60m
