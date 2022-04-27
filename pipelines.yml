@@ -12,6 +12,14 @@ pipelines:
           onExecute:
             - printenv
             - echo "test"
+            - cd $res_r_stepletTestReports_resourcePath
+            - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest
+            - cd $res_r_stepletTestReports_resourcePath
+            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+            - save_tests $res_r_stepletTestReports_resourcePath/test-reports/results.xml
 #             - echo ${int_varsha_bbs_username}
 #             - echo ${int_varsha_bbs_password}
 #             - sleep 60m
