@@ -1,5 +1,5 @@
 resources:
-  - name: repo_stepletTestReports
+  - name: repo_stepletTestReport1
     type: GitRepo
     configuration:
       gitProvider: v_github
@@ -9,11 +9,11 @@ pipelines:
   - name: v_simple_pipelinetest
     steps:
 
-      - name: bash_testreports
+      - name: bash_testreports1
         type: Bash
         configuration:
           inputResources:
-            - name: repo_stepletTestReports
+            - name: repo_stepletTestReport1
         execution:
           onExecute:
             - printenv
