@@ -9,12 +9,11 @@ pipelines:
   - name: v_simple_pipelinetest
     steps:
 
-      - name: np_cloud_u16_ami_043b8e63d0d3809cd
+      - name: bash_testreports
         type: Bash
-#         configuration:
-#           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
-#           integrations:
-#             - name: varsha_bbs
+        configuration:
+          inputResources:
+            - name: repo_stepletTestReports
         execution:
           onExecute:
             - printenv
