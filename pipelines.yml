@@ -1,9 +1,9 @@
 resources:
-  - name: repo_stepletTestReport1
-    type: GitRepo
-    configuration:
-      gitProvider: v_github
-      path: jfbetapipeorg/Org_test_Automation
+#   - name: repo_stepletTestReport1
+#     type: GitRepo
+#     configuration:
+#       gitProvider: v_github
+#       path: jfbetapipeorg/Org_test_Automation
 
 pipelines:
   - name: v_simple_pipelinetest
