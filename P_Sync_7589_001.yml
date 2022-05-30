@@ -1,0 +1,22 @@
+resources:
+  - name: P_Sync_7589_001_gitrepo
+    type: GitRepo
+    configuration:
+      gitProvider: default_s_github_duplicate_7589_1
+      path: jfbetapipeorg/Org_test_Automation
+      branches:
+        include: master
+
+pipelines:
+  - name: P_Sync_7589_001
+    steps:
+      - name: P_Sync_7589_001_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: P_Sync_7589_001_gitrepo
+        execution:
+          onExecute:
+            - pushd \${res_P_Sync_7589_001_gitrepo_resourcePath}
+            - ls -la
+            - popd
