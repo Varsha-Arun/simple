@@ -18,6 +18,9 @@ pipelines:
 
       - name: np_cloud_u16b
         type: Bash
+          configuration:
+            inputSteps:
+              - name: np_cloud_u16a
         execution:
           onExecute:
             - echo "test"
