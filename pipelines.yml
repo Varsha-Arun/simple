@@ -26,7 +26,7 @@ pipelines:
           requiresApproval:
             timeoutSeconds: 86400
             approvers:
-              - secondadmin
+              - admin
 #             notifications:
 #               - integrationName: BSAG_4034_SMTP
 #                 recipients:
