@@ -1,26 +1,39 @@
 pipelines:
-  - name: v_simple_pipelinetest
+  - name: PIPE_5691_0005_test
     steps:
-
-      - name: np_cloud_u16a
+      - name: PIPE_5691_0005_step1_test
         type: Bash
-#         configuration:
-#           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
-#           integrations:
-#             - name: varsha_bbs
         execution:
           onExecute:
-            - printenv
-            - echo "test"
-#             - echo ${int_varsha_bbs_username}
-#             - echo ${int_varsha_bbs_password}
-#             - sleep 60m
-
-      - name: np_cloud_u16b
+            - echo "going to sleep"
+            - sleep 100
+            - echo "woke up!"
+      - name: PIPE_5691_0005_step2_test
         type: Bash
         configuration:
           inputSteps:
-            - name: np_cloud_u16a
+            - name: PIPE_5691_0005_step1_test
         execution:
           onExecute:
-            - echo "test"
+            - echo "going to sleep"
+            - sleep 100
+            - echo "woke up!"
+      - name: PIPE_5691_0005_step3_test
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: PIPE_5691_0005_step2_test
+          requiresApproval:
+            timeoutSeconds: 86400
+            approvers:
+              - secondadmin
+            notifications:
+              - integrationName: BSAG_4034_SMTP
+                recipients:
+                  - pipelines.release@gmail.com
+                  - email@example.com
+              - integrationName: BSAG_4034_SLACK
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
