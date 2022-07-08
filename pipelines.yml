@@ -76,3 +76,48 @@ pipelines:
         execution:
           onExecute:
             - echo "test"
+      - name: np_cloud_u16i
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16c
+        execution:
+          onExecute:
+            - echo "test"
+
+      - name: np_cloud_u16j
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16c
+        execution:
+          onExecute:
+            - echo "test"
+
+      - name: np_cloud_u16k
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16c
+        execution:
+          onExecute:
+            - echo "test"
+
+      - name: np_cloud_u16l
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16c
+        execution:
+          onExecute:
+            - echo "test"
+
+      - name: np_cloud_u16m
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16c
+        execution:
+          onExecute:
+            - echo "test"
+
