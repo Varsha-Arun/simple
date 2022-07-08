@@ -34,3 +34,45 @@ pipelines:
         execution:
           onExecute:
             - echo "test"
+      - name: np_cloud_u16c
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16a
+        execution:
+          onExecute:
+            - echo "test"
+            
+      - name: np_cloud_u16d
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16a
+        execution:
+          onExecute:
+            - echo "test"
+            
+      - name: np_cloud_u16e
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16a
+        execution:
+          onExecute:
+            - echo "test"
+      - name: np_cloud_u16f
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16a
+        execution:
+          onExecute:
+            - echo "test"
+      - name: np_cloud_u16h
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: np_cloud_u16a
+        execution:
+          onExecute:
+            - echo "test"
