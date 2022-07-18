@@ -1,31 +1,77 @@
-resources:
+# resources:
 #   - name: repo_stepletTestReport1
 #     type: GitRepo
 #     configuration:
 #       gitProvider: v_github
 #       path: jfbetapipeorg/Org_test_Automation
 
-pipelines:
-  - name: v_simple_pipelinetest
-    steps:
+# pipelines:
+#   - name: v_simple_pipelinetest
+#     steps:
 
-      - name: bash_testreports1
+#       - name: bash_testreports1
+#         type: Bash
+# #         configuration:
+# #           inputResources:
+# #             - name: repo_stepletTestReport1
+#         execution:
+#           onExecute:
+#             - printenv
+#             - echo "test"
+#             - cd $res_repo_stepletTestReports_resourcePath
+#             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
+#             - pip install --upgrade pip
+#             - hash -d pip
+#             - pip install pytest
+#             - cd $res_r_stepletTestReports_resourcePath
+#             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+#             - save_tests $res_repo_stepletTestReports_resourcePath/test-reports/results.xml
+# #             - echo ${int_varsha_bbs_username}
+# #             - echo ${int_varsha_bbs_password}
+# #             - sleep 60m
+
+
+
+resources:
+  - name: r_stepTestReports
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/Org_test_Automation
+
+pipelines:
+  - name: P_stepTestReports
+    steps:
+      - name: s_stepTestReports
         type: Bash
-#         configuration:
-#           inputResources:
-#             - name: repo_stepletTestReport1
+        configuration:
+          inputResources:
+            - name: r_stepTestReports
         execution:
           onExecute:
-            - printenv
-            - echo "test"
-            - cd $res_repo_stepletTestReports_resourcePath
+            - cd $res_r_stepTestReports_resourcePath
             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
             - hash -d pip
             - pip install pytest
-            - cd $res_r_stepletTestReports_resourcePath
+            - cd $res_r_stepTestReports_resourcePath
             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
-            - save_tests $res_repo_stepletTestReports_resourcePath/test-reports/results.xml
-#             - echo ${int_varsha_bbs_username}
-#             - echo ${int_varsha_bbs_password}
-#             - sleep 60m
+            - save_tests $res_r_stepTestReports_resourcePath/test-reports/results.xml
+
+#   - name: P_stepTestReports_ProjecrAdmin
+#     steps:
+#       - name: s_stepTestReportsProjectAdmin
+#         type: Bash
+#         configuration:
+#           inputResources:
+#             - name: r_stepTestReports
+#         execution:
+#           onExecute:
+#             - cd $res_r_stepTestReports_resourcePath
+#             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
+#             - pip install --upgrade pip
+#             - hash -d pip
+#             - pip install pytest
+#             - cd $res_r_stepTestReports_resourcePath
+#             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+#             - save_tests $res_r_stepTestReports_resourcePath/test-reports/results.xml
