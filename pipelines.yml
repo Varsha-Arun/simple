@@ -1,40 +1,18 @@
-# pipelines:
-#   - name: P_stepletTestReports_matrix
-#     steps:
-#       - name: s_stepletTestReports
-#         type: Matrix
-#         stepMode: Bash
-# #         configuration:
-# #           inputResources:
-# #             - name: r_stepletTestReports
-#         stepletMultipliers:
-#           environmentVariables:
-#             - env1: one
-#         execution:
-#           onExecute:
-#             - cd $res_r_stepletTestReports_resourcePath
-#             - add_run_variables imageTag="master"
-# #             - mkdir -p ${step_workspace_dir}
-#             - echo "hi" > touch cachefile.txt
-#     #        - pwd cachefile.txt
-#             - add_run_variables foo="bar" test="qa"
-#             - add_pipeline_variables imageName="myimage" domainName="jfrog"
-#             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
-#             - pip install --upgrade pip
-#             - hash -d pip
-#             - pip install pytest
-#             - cd $res_r_stepletTestReports_resourcePath
-#             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
-#             - save_tests $res_r_stepletTestReports_resourcePath/test-reports/results.xml
-
-
-
 resources:
-  - name: r_stepTestReports_v1
+
+  - name: resource_A_Pipeinfo_gitRepo_v1
     type: GitRepo
     configuration:
-      gitProvider: varsha_github
       path: Varsha-Arun/Org_test_Automation
+      branches:
+        include: master
+      gitProvider: varsha_github
+
+  - name: resource_A_stepArtifact_propertyBag_v1
+    type: PropertyBag
+    configuration:
+      commitSha: 1
+      runID: 1
 
 pipelines:
   - name: P_stepTestReports_v1
@@ -43,16 +21,62 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: r_stepTestReports_v1
+            - name: resource_A_Pipeinfo_gitRepo_v1
         execution:
           onExecute:
-            - cd $res_r_stepTestReports_v1_resourcePath
+            - cd $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath
             - add_run_files tests/core/sampleExecutionFile/calc.py my_files
             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
             - hash -d pip
             - pip install pytest
-            - cd $res_r_stepTestReports_v1_resourcePath
+            - cd $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath
             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
-            - save_tests $res_r_stepTestReports_v1_resourcePath/test-reports/results.xml
+            - save_tests $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath/test-reports/results.xml
             - restore_run_files my_files tests/core/sampleExecutionFile/calc.py
+            
+      - name: s_stepArtifacts_001_v1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: resource_A_Pipeinfo_gitRepo_v1
+          integrations:
+            - name: varsha_github
+        execution:
+          onExecute:
+            - echo "executing step api_pipeinfo_step1"
+          onComplete:
+            - add_run_variables current_runid=$run_id
+            - add_run_variables commitSha=$res_jatin_gitrepo2_commitSha
+      - name: s_stepArtifacts_002_v1
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          inputSteps:
+            - name: s_stepArtifacts_001_v1
+        stepletMultipliers:
+          environmentVariables:
+            - animal:    dog
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard
+              mineral:   lead
+        execution:
+          onExecute:
+            - echo "I am executing matrix steplet \${steplet_id}"
+            - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
+      - name: s_stepArtifacts_003_v1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: s_stepArtifacts_002_v1
+          outputResources:
+            - name: resource_A_stepArtifact_propertyBag_v1
+        execution:
+          onExecute:
+            - echo $current_runid
+            - add_pipeline_variables prev_runid=$run_id
+            - write_output resource_A_stepArtifact_propertyBag_v1 commitSha=$commitSha runID=$current_runid
