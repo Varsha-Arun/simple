@@ -16,8 +16,8 @@ pipelines:
             - add_run_variables imageTag="master"
 #             - mkdir -p ${step_workspace_dir}
             - echo "hi" > touch cachefile.txt
-            - pwd ${step_workspace_dir}/cachefile.txt
-            - add_run_files ${step_workspace_dir}/cachefile.txt my_file
+    #        - pwd cachefile.txt
+            - add_run_files tests/core/sampleExecutionFile/calc.py my_file
             - add_pipeline_variables imageName="myimage" domainName="jfrog"
             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
