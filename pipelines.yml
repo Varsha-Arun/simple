@@ -41,14 +41,25 @@ resources:
 
 pipelines:
   - name: P_stepTestReports
+    configuration:
+      environmentVariables:
+        readOnly:
+          TEST_ENV: "pipelines"
+          JUST_FES: "options"
+          LOL_FOO: "test"
     steps:
       - name: s_stepTestReports
         type: Bash
         configuration:
+          environmentVariables:
+            key1: "value1"
+            key2: "value2"
+            key3: "value3"
           inputResources:
             - name: r_stepTestReports
         execution:
           onExecute:
+            - printenv
             - cd $res_r_stepTestReports_resourcePath
             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
