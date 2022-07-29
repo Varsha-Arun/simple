@@ -1,123 +1,15 @@
-pipelines:
-  - name: v_simple_pipelinetest
+resources:
+  - name: repo_demo
+    type: GitRepo
     configuration:
-      environmentVariables:
-        readOnly:
-          env1: 
-            allowCustom: true
-            default: "value1"
-          env2: value2
+      gitProvider: varsha_github
+      path: Varsha-Arun/jpipe
+
+pipelines:
+  - name: demoPipelines
     steps:
-
-      - name: np_cloud_u16a
+      - name: demoStep_1
         type: Bash
-        configuration:
-          environmentVariables:
-            JFROG_CLI_BUILD_NAME: "pipelines-automation-e2e"
-            JFROG_CLI_BUILD_NUMBER: "${run_id}"
-#           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
-#           integrations:
-#             - name: varsha_bbs
         execution:
           onExecute:
-            - printenv
-#             - echo "test"
-#             - echo ${int_varsha_bbs_username}
-#             - echo ${int_varsha_bbs_password}
-#             - sleep 60m
-
-      - name: np_cloud_u16b
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16a
-        execution:
-          onExecute:
-            - echo "test"
-      - name: np_cloud_u16c
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16a
-        execution:
-          onExecute:
-            - echo "test"
-            
-      - name: np_cloud_u16d
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16a
-        execution:
-          onExecute:
-            - echo "test"
-            
-      - name: np_cloud_u16e
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16a
-        execution:
-          onExecute:
-            - echo "test"
-      - name: np_cloud_u16f
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16a
-        execution:
-          onExecute:
-            - echo "test"
-      - name: np_cloud_u16h
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16a
-        execution:
-          onExecute:
-            - echo "test"
-      - name: np_cloud_u16i
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16c
-        execution:
-          onExecute:
-            - echo "test"
-
-      - name: np_cloud_u16j
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16c
-        execution:
-          onExecute:
-            - echo "test"
-
-      - name: np_cloud_u16k
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16c
-        execution:
-          onExecute:
-            - echo "test"
-
-      - name: np_cloud_u16l
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16c
-        execution:
-          onExecute:
-            - echo "test"
-
-      - name: np_cloud_u16m
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: np_cloud_u16c
-        execution:
-          onExecute:
-            - echo "test"
-
+            - echo "Hello world!"
