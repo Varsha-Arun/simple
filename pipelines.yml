@@ -16,4 +16,5 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello world!!"
+            - pushd $res_repo_demo_resourcePath
             - ./test.sh
