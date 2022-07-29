@@ -13,3 +13,4 @@ pipelines:
         execution:
           onExecute:
             - echo "Hello world!"
+            - ./test.sh
