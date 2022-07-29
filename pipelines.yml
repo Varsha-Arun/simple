@@ -11,7 +11,7 @@ pipelines:
       - name: demoStep_1
         type: Bash
         configuration: 
-          inputSteps:
+          inputResources:
             - name: repo_demo
         execution:
           onExecute:
