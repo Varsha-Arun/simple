@@ -12,5 +12,5 @@ pipelines:
         type: Bash
         execution:
           onExecute:
-            - echo "Hello world!"
+            - echo "Hello world!!"
             - ./test.sh
