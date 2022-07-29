@@ -10,8 +10,9 @@ pipelines:
     steps:
       - name: demoStep_1
         type: Bash
-        inputSteps:
-          - name: repo_demo
+        configuration: 
+          inputSteps:
+            - name: repo_demo
         execution:
           onExecute:
             - echo "Hello world!!"
