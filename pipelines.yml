@@ -11,13 +11,13 @@ pipelines:
 
       - name: np_cloud_u16a
         type: Bash
-        configuration:
-          environmentVariables:
-            JFROG_CLI_BUILD_NAME: "pipelines-automation-e2e"
-            JFROG_CLI_BUILD_NUMBER: "${run_id}"
-#           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
-#           integrations:
-#             - name: varsha_bbs
+#         configuration:
+#           environmentVariables:
+#             JFROG_CLI_BUILD_NAME: "pipelines-automation-e2e"
+#             JFROG_CLI_BUILD_NUMBER: "${run_id}"
+# #           nodePool: np_cloud_u16_ami_043b8e63d0d3809cd
+# #           integrations:
+# #             - name: varsha_bbs
         execution:
           onExecute:
             - printenv
