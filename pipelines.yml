@@ -1,12 +1,12 @@
 pipelines:
   - name: v_simple_pipelinetest
-    configuration:
-      environmentVariables:
-        readOnly:
-          env1: 
-            allowCustom: true
-            default: "value1"
-          env2: value2
+#     configuration:
+#       environmentVariables:
+#         readOnly:
+#           env1: 
+#             allowCustom: true
+#             default: "value1"
+#           env2: value2
     steps:
 
       - name: np_cloud_u16a
