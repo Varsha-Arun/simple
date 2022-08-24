@@ -60,6 +60,7 @@ pipelines:
         execution:
           onExecute:
             - echo "test"
+            - failgdjaghdjasgagufa
       - name: np_cloud_u16f
         type: Bash
         configuration:
