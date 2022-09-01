@@ -30,7 +30,7 @@
                 inputResources:
                   - name: pbr
                 inputSteps:
-                  - name: step1
+                  - name: step2
               execution:
                 onExecute:
                   - echo lol
