@@ -10,7 +10,7 @@
               type: bash
               configuration:
                 outputResources:
-                  - name: step1
+                  - name: pbr
               execution:
                 onExecute:
                   - echo lol
