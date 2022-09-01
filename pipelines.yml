@@ -15,14 +15,14 @@
                 onExecute:
                   - echo lol
 
-#             - name: step2
-#               type: bash
-#               configuration:
-#                 inputSteps:
-#                   - name: step1
-#               execution:
-#                 onExecute:
-#                   - echo lol
+            - name: step2
+              type: bash
+              configuration:
+                inputSteps:
+                  - name: step1
+              execution:
+                onExecute:
+                  - echo lol
 
             - name: step3
               type: bash
