@@ -1,36 +1,9 @@
-      resources:
-        - name: pbr
-          type: propertybag
-          configuration:
-            foo: boo
-      pipelines:
-        - name: pipeline1
-          steps:
-            - name: step1
-              type: bash
-              configuration:
-                outputResources:
-                  - name: pbr
-              execution:
-                onExecute:
-                  - echo lol
-
-            - name: step2
-              type: bash
-              configuration:
-                inputSteps:
-                  - name: step1
-              execution:
-                onExecute:
-                  - echo lol
-
-            - name: step3
-              type: bash
-              configuration:
-                inputResources:
-                  - name: pbr
-                inputSteps:
-                  - name: step2
-              execution:
-                onExecute:
-                  - echo lol
+pipelines:
+  - name: jenkinsPipeline
+    steps:
+      - name: jenkinsStep1
+        type: jenkins
+        configuration:
+          jenkinsJobName: basic-api
+          integrations:
+            - name: myJenkinsInt
