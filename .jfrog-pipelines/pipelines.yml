@@ -1,0 +1,30 @@
+resources:
+  - name: pbr
+    type: propertybag
+    configuration:
+      foo: boo
+pipelines:
+  - name: pipeline1
+    configuration:
+      dependencyMode:
+        waitOnChildComplete: true
+    steps:
+      - name: step1
+        type: BASH
+        configuration:
+          outputResources:
+            - name: pbr
+        execution:
+          onExecute:
+            - echo lol
+
+  - name: pipeline2
+    steps:
+      - name: step2
+        type: BASH
+        configuration:
+          inputResources:
+            - name: pbr
+        execution:
+          onExecute:
+            - echo lol
