@@ -28,3 +28,14 @@ pipelines:
         execution:
           onExecute:
             - echo lol
+
+  - name: pipeline3
+    steps:
+      - name: step3
+        type: BASH
+        configuration:
+          inputResources:
+            - name: pbr
+        execution:
+          onExecute:
+            - echo lol
