@@ -3,7 +3,7 @@ pipelines:
     steps:
       - name: testmatrix
         type: Matrix
-        stepMode: BASH
+        stepMode: Bash
         stepletMultipliers:
           environmentVariables: 
             - env1: one 
