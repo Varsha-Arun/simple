@@ -1,8 +1,8 @@
 pipelines:
   - name: pipeline1
     steps:
-      - name: step1
-        type: MATRIX
+      - name: testmatrix
+        type: Matrix
         stepMode: BASH
         stepletMultipliers:
           environmentVariables: 
