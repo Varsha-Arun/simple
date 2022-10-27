@@ -2,19 +2,12 @@ pipelines:
   - name: pipeline1
     steps:
       - name: step1
-        type: Bash
-        execution:
-          onExecute:
-            - echo lol
-
-      - name: step2
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step1
-          requiresApproval:
-            approvers:
-              - admin
+        type: MATRIX
+        stepMode: BASH
+        stepletMultipliers:
+          environmentVariables: 
+            - env1: one 
+            - env2: two
         execution:
           onExecute:
             - echo lol
