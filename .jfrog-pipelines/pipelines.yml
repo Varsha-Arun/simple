@@ -1,7 +1,7 @@
 pipelines:
-  - name: pipeline1
+  - name: pipeline1matrix
     steps:
-      - name: testmatrix
+      - name: testmatrix1
         type: Matrix
         stepMode: Bash
         stepletMultipliers:
