@@ -1,0 +1,22 @@
+pipelines:
+  - name: S_WF_8033_01_pipe
+    steps:
+      - name: S_WF_8033_01_step
+        type: TriggerPipeline
+        configuration:
+          integrations:
+            - name: WF_TriggerPipeline_8033_JFrogPlatformToken
+          pipelineName: S_WF_8033_01_target
+          stepName: S_WF_8033_01_target_step
+
+  - name: S_WF_8033_01_target
+    steps:
+      - name: S_WF_8033_01_target_step
+        type: Bash
+        execution:
+          onExecute:
+            - if [ -z "$parent_step_name" ]; then exit 1; fi
+            - if [ -z "$parent_step_id" ]; then exit 1; fi
+            - if [ -z "$parent_run_id" ]; then exit 1; fi
+            - if [ -z "$parent_run_number" ]; then exit 1; fi
+            - if [ -z "$parent_step_url" ]; then exit 1; fi
