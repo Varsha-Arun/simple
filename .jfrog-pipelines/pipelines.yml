@@ -13,9 +13,10 @@ resources:
 pipelines:
   - name: pipeline_P_WF_5933_004
     configuration:
-      environmentVaribales:
-        - foopipe: bar
-        - test1pipe: step1
+      environmentVariables:
+        readOnly:
+          env1:     value1
+          env2:     value2
       integrations:
         - name: s_artifactory
     steps:
