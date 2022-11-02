@@ -15,8 +15,8 @@ pipelines:
     configuration:
       environmentVariables:
         readOnly:
-          env1:     value1
-          env2:     value2
+          env1: value1
+          env2: value2
       integrations:
         - name: s_artifactory
     steps:
