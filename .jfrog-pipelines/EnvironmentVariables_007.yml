@@ -1,0 +1,17 @@
+pipelines:
+  - name: EnvironmentVariables_007
+    steps:
+      - name: S_B_EnvironmentVariables_007
+        type: Bash
+        configuration:
+          environmentVariables:
+            - keyEV: valueStep
+        execution:
+          onExecute:
+            - echo $keyEV
+            - if [ $keyEV = "valueStep" ]; then
+                echo "global environment variables values are overidden by step environment variables in step";
+              else
+                echo "global environment variables values are not overidden by step environment variables in step";
+                exit 1;
+              fi
