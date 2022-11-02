@@ -24,6 +24,7 @@ pipelines:
         configuration:
           inputResources:
             - name: P_WF_5933_004_resource
+            - name: all_gr
           environmentVaribales:
             - foo: bar
             - test1: step1
