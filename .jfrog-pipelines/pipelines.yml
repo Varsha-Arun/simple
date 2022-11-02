@@ -3,7 +3,13 @@ resources:
     type: PropertyBag
     configuration:
       test: test
-
+      
+  - name: all_gr
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/pipelines
+      gitProvider: varsha_github
+        
 pipelines:
   - name: pipeline_P_WF_5933_004
     configuration:
