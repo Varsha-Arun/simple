@@ -22,3 +22,20 @@ pipelines:
                 echo "global environment variables values are not overidden by step environment variables in step";
                 exit 1;
               fi
+      - name: S_B_EnvironmentVariables_008_1
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_B_EnvironmentVariables_008
+          environmentVariables:
+            keyEV: testValueStep
+        execution:
+          onExecute:
+            - printenv
+            - echo $keyEV
+            - if [ $keyEV = testValueStep ]; then
+                echo "global environment variables values are overidden by step environment variables in step";
+              else
+                echo "global environment variables values are not overidden by step environment variables in step";
+                exit 1;
+              fi
