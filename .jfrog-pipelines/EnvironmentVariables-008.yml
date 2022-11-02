@@ -11,7 +11,7 @@ pipelines:
         type: Bash
         configuration:
           environmentVariables:
-            - keyEV: testValueStep
+            keyEV: testValueStep
         execution:
           onExecute:
             - echo $keyEV
