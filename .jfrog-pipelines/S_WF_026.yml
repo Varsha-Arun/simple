@@ -1,0 +1,53 @@
+pipelines:
+
+  - name: S_WF_026
+    configuration:
+      nodePool: win_2019
+    steps:
+
+      - name: S_WF_026_001
+        type: PowerShell
+        execution:
+          onExecute:
+            - Write-Output "Step 1 is running"
+
+      - name: S_WF_026_002
+        type: PowerShell
+        configuration:
+          inputSteps:
+            - name: S_WF_026_001
+          affinityGroup: some_ag
+        execution:
+          onStart:
+            - add_run_variables step_2_node_id="${step_node_id}"
+          onExecute:
+            - Write-Output "Step 2 is running"
+
+      - name: S_WF_026_003
+        type: PowerShell
+        configuration:
+          inputSteps:
+            - name: S_WF_026_001
+          affinityGroup: some_ag
+        execution:
+          onStart:
+            - add_run_variables step_3_node_id="${step_node_id}"
+          onExecute:
+            - Write-Output "Step 3 is running"
+
+      - name: S_WF_026_004
+        type: PowerShell
+        configuration:
+          inputSteps:
+            - name: S_WF_026_002
+            - name: S_WF_026_003
+          affinityGroup: some_ag
+        execution:
+          onStart:
+            - add_run_variables step_4_node_id="${step_node_id}"
+          onExecute:
+            - Write-Output "step_2_node_id - ${step_2_node_id}"
+            - Write-Output "step_3_node_id - ${step_3_node_id}"
+            - Write-Output "step_4_node_id - ${step_4_node_id}"
+            - if ("$step_2_node_id" -ne "$step_4_node_id") { throw "variable does not match expected value" }
+            - if ("$step_3_node_id" -ne "$step_4_node_id") { throw "variable does not match expected value" }
