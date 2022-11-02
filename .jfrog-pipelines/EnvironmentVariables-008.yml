@@ -1,5 +1,5 @@
 pipelines:
-  - name: EnvironmentVariables-008
+  - name: EnvironmentVariables_008
     configuration:
       environmentVariables:
         readOnly:
