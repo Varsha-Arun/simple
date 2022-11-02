@@ -14,6 +14,7 @@ pipelines:
             keyEV: testValueStep
         execution:
           onExecute:
+            - printenv
             - echo $keyEV
             - if [ $keyEV = testValueStep ]; then
                 echo "global environment variables values are overidden by step environment variables in step";
