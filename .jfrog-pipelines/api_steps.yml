@@ -1,0 +1,8 @@
+pipelines:
+  - name: API_pipelines_1
+    steps:
+      - name: API_Step_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo "testing"
