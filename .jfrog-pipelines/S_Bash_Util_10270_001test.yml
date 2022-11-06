@@ -1,0 +1,8 @@
+pipelines:
+  - name: pipelineS_Bash_Util_10270_001test
+    steps:
+      - name: S_Bash_Util_10270_001test
+        type: Bash
+        execution: 
+          onStart: 
+            - update_run_description run description in onStarttest
