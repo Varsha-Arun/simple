@@ -6,3 +6,4 @@ pipelines:
         execution: 
           onStart: 
             - update_run_description "run description in onStarttest"
+            - update_run_description "test@3465790-1"
