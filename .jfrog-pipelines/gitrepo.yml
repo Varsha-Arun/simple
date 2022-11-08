@@ -1,0 +1,30 @@
+resources:
+  - name: r_testsimplerepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/simple
+      
+pipelines:
+  - name: testGitrepoPipe
+#     configuration:
+#       environmentVariables:
+#         readOnly:
+#           TEST_ENV: "pipelines"
+#           JUST_FES: "options"
+#           LOL_FOO: "test"
+    steps:
+      - name: testGitrepoStep
+        type: Bash
+        configuration:
+#           environmentVariables:
+#             key1: "value1"
+#             key2: "value2"
+#             key3: "value3"
+          inputResources:
+            - name: r_testsimplerepo
+        execution:
+          onExecute:
+            - printenv
+            - cd $res_r_stepTestReports_resourcePath
+            
