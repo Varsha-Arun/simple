@@ -1,11 +1,9 @@
 pipelines:
   - name: test_main
     steps:
-
       - name: test_simple_main
         type: Bash
         execution:
           onExecute:
             - printenv
-            - echo "hi"
             - echo "hello"
