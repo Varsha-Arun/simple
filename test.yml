@@ -7,3 +7,4 @@ pipelines:
           onExecute:
             - printenv
             - echo "hello"
+
