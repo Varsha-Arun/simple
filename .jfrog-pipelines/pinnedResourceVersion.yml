@@ -2,7 +2,9 @@ resources:
   - name: releaseVersion
     type: PropertyBag
     configuration:
-      value: 1.20.0
+      value: test
+      pin:
+        versionId: 2
 
 pipelines:
   - name: P_Bash_001
