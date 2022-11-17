@@ -4,7 +4,7 @@ resources:
     configuration:
       value: test
       pin:
-        versionId: 2
+        versionId: 115
 
 pipelines:
   - name: P_Bash_001
