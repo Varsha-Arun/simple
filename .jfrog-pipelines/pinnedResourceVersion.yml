@@ -19,7 +19,7 @@ pipelines:
             - name: releaseVersion
         execution:
           onExecute:
-            - write_output releaseVersion value=$resource_set
+            - write_output releaseVersion value=$run_number
             
   - name: P_Bash_002
     steps:
