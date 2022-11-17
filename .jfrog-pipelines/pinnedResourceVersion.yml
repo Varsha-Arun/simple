@@ -3,8 +3,6 @@ resources:
     type: PropertyBag
     configuration:
       value: 1.20.0
-      pin:
-       versionId: {{pinVersion}}
 
 pipelines:
   - name: P_Bash_001
