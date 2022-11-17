@@ -1,0 +1,36 @@
+resources:
+  - name: releaseVersion
+    type: PropertyBag
+    configuration:
+      value: 1.20.0
+      pin:
+       versionId: {{pinVersion}}
+
+pipelines:
+  - name: P_Bash_001
+    configuration:
+      environmentVariables:
+        readOnly:
+          resource_set: 2
+          resource_check: 1
+    steps:
+      - name: S_Bash_001_1
+        type: Bash
+        configuration:
+          outputResources:
+            - name: releaseVersion
+        execution:
+          onExecute:
+            - write_output releaseVersion value=$resource_set
+            
+  - name: P_Bash_002
+    steps:
+      - name: P_Bash_002_1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: releaseVersion
+        execution:
+          onExecute:
+            - echo $res_releaseVersion_value
+#             - if [ "$res_releaseVersion" != "$resource_check" ]; then exit 1; fi
