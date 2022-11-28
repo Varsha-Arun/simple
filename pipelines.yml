@@ -121,4 +121,3 @@ pipelines:
         execution:
           onExecute:
             - echo "test"
-
