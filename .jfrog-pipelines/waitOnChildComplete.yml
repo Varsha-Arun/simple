@@ -1,45 +1,45 @@
-pipelines:
+# pipelines:
 
-  - name: P_WF_pipelines
+#   - name: P_WF_pipelines
     
-    steps:
-      - name: P_WF_step1
-        type: Bash
-        configuration:
-          inputresources:
-            - name: gitrepo_simple_main
-          outputResources:
-            - name: pb_branchSnapshot_version
-        execution:
-          onExecute:
-            - echo "executing step..."
-            - sleep 10
-            - write_output pb_branchSnapshot_version test=$run_number
+#     steps:
+#       - name: P_WF_step1
+#         type: Bash
+#         configuration:
+#           inputresources:
+#             - name: gitrepo_simple_main
+#           outputResources:
+#             - name: pb_branchSnapshot_version
+#         execution:
+#           onExecute:
+#             - echo "executing step..."
+#             - sleep 10
+#             - write_output pb_branchSnapshot_version test=$run_number
 
-  - name: P_WF_deploy
-    configuration:
-      dependencyMode:
-        waitOnChildComplete: true
-    steps:
-      - name: P_WF_step2
-        type: Bash
-        configuration:
-          inputResources:
-            - name: pb_branchSnapshot_version
-        execution:
-          onExecute:
-            - echo "executing step..."
-            - sleep 10
+#   - name: P_WF_deploy
+#     configuration:
+#       dependencyMode:
+#         waitOnChildComplete: true
+#     steps:
+#       - name: P_WF_step2
+#         type: Bash
+#         configuration:
+#           inputResources:
+#             - name: pb_branchSnapshot_version
+#         execution:
+#           onExecute:
+#             - echo "executing step..."
+#             - sleep 10
 
-  - name: P_WF_mqtest
-    steps:
-      - name: P_WF_step3
-        type: Bash
-        configuration:
-          inputResources:
-            - name: P_WF_0017_resource2
-        execution:
-          onExecute:
-            - echo "executing step..."
-            - sleep 10
+#   - name: P_WF_mqtest
+#     steps:
+#       - name: P_WF_step3
+#         type: Bash
+#         configuration:
+#           inputResources:
+#             - name: P_WF_0017_resource2
+#         execution:
+#           onExecute:
+#             - echo "executing step..."
+#             - sleep 10
 
