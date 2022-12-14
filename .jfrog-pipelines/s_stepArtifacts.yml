@@ -89,6 +89,8 @@ pipelines:
             - name: resource_A_stepArtifact_propertyBag_v1
         execution:
           onExecute:
+            - set_run_name 'testRunName'
+            - update_run_description 'testRunDescription'
             - echo $current_runid
             - add_pipeline_variables prev_runid=$run_id
             - write_output resource_A_stepArtifact_propertyBag_v1 commitSha=$commitSha runID=$current_runid
