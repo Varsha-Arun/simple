@@ -26,6 +26,8 @@ pipelines:
         execution:
           onExecute:
             - printenv
+            - set_run_name 'test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_'
+            - update_run_description 'test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_'’
             - cd $res_r_stepTestReports_resourcePath
             - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
             - pip install --upgrade pip
