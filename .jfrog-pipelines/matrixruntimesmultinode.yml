@@ -261,7 +261,7 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
           
-  - name: Matrix_Pipeline_Rutime_Step_Runtime
+  - name: Matrix_Multi_Node_Pipeline_Rutime_Step_Runtime
     configuration:
       inputResources:
         - name: trigger_all
