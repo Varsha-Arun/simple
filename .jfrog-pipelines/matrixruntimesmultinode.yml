@@ -427,9 +427,9 @@ pipelines:
                 language: node
                 versions:
                 - '16'
-          stepletMultipliers:
-            environmentVariables:
-              - name: test
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
         execution:
           onExecute:
             - echo Im executing
