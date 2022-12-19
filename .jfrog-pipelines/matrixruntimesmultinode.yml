@@ -419,16 +419,17 @@ pipelines:
     steps:
       - name: matrix_1
         type: Matrix
-        runtime:
-          type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '16'
-        stepletMultipliers:
-          environmentVariables:
-            - name: test
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                - '16'
+          stepletMultipliers:
+            environmentVariables:
+              - name: test
         execution:
           onExecute:
             - echo Im executing
