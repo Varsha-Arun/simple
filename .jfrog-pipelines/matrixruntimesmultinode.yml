@@ -17,7 +17,7 @@ pipelines:
             - echo Im executing
           onSuccess:
             - echo 'i am onsuccess'
-            - write_output trigger_all trigger=$run_id
+            - write_output triggerMatrixRuntime trigger=$run_id
           onFailure:
             - echo 'i am onfailure'
           onComplete:
@@ -52,7 +52,7 @@ pipelines:
         type: Matrix
         configuration:
           inputResources:
-            - name: trigger_all
+            - name: triggerMatrixRuntime
           multiNode: true
           runtime:
             type: image
@@ -109,7 +109,7 @@ pipelines:
         type: Matrix
         configuration:
           inputResources:
-            - name: trigger_all
+            - name: triggerMatrixRuntime
           multiNode: true
         stepletMultipliers:
           runtimes:
