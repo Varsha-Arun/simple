@@ -1,8 +1,7 @@
 pipelines:
   - name: Matrix_NodePool_Pipeline_Rutime_Varsha
     configuration:
-      nodePool:
-        - windows
+      nodePool: windows
       runtime:
         type: image
         image:
@@ -71,8 +70,8 @@ pipelines:
           multiNode: true
         stepletMultipliers:
           nodePools:
-            - name: pool
-            - name: windows
+            - pool
+            - windows
           environmentVariables:
             - name: test
         execution:
