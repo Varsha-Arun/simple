@@ -1,426 +1,440 @@
-  resources:
+resources:
   - name: trigger_all
     type: PropertyBag
     configuration:
       key: value
-  pipelines:
+      
+pipelines:
   - name: Trigger_Matrix_Tests
     steps:
-    - name: trigger
-      type: Bash
-      configuration:
-        outputResources:
-        - name: trigger_all
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        - write_output trigger_all trigger=$run_id
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: trigger
+        type: Bash
+        configuration:
+          outputResources:
+            - name: trigger_all
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+            - write_output trigger_all trigger=$run_id
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+        
   - name: Matrix_Step_Type_Host
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        multiNode: true
-        inputResources:
-        - name: trigger_all
-        runtime:
-          type: host
-      stepletMultipliers:
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          multiNode: true
+          inputResources:
+            - name: trigger_all
+          runtime:
+            type: host
+        stepletMultipliers:
+          environmentVariables:
+          - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+        
   - name: Matrix_Step_Type_Image_Custom
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        inputResources:
-        - name: trigger_all
-        multiNode: true
-        runtime:
-          type: image
-          image:
-            custom:
-              name: entplus.jfrog.io/devops-docker/jfrog/devops/jfrog-saas-deployer
-              tag: latest
-              autoPull: true
-              options: "--entrypoint=''"
-      stepletMultipliers:
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          inputResources:
+            - name: trigger_all
+          multiNode: true
+          runtime:
+            type: image
+            image:
+              custom:
+                name: entplus.jfrog.io/devops-docker/jfrog/devops/jfrog-saas-deployer
+                tag: latest
+                autoPull: true
+                options: "--entrypoint=''"
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+        
   - name: Matrix_Step_Type_Image_Auto
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        inputResources:
-        - name: trigger_all
-        multiNode: true
-        runtime:
-          type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '16'
-      stepletMultipliers:
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          inputResources:
+            - name: trigger_all
+          multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '16'
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
   - name: Matrix_Step_Steplet_Host
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        inputResources:
-        - name: trigger_all
-        multiNode: true
-      stepletMultipliers:
-        runtimes:
-        - type: host
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          inputResources:
+            - name: trigger_all
+          multiNode: true
+        stepletMultipliers:
+          runtimes:
+            - type: host
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
   - name: Matrix_Step_Steplet_Image_Custom
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        inputResources:
-        - name: trigger_all
-        multiNode: true
-      stepletMultipliers:
-        runtimes:
-        - type: image
-          image:
-            custom:
-              name: entplus.jfrog.io/devops-docker/jfrog/devops/jfrog-saas-deployer
-              tag: latest
-              autoPull: true
-              options: "--entrypoint=''"
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          inputResources:
+            - name: trigger_all
+          multiNode: true
+        stepletMultipliers:
+          runtimes:
+          - type: image
+            image:
+              custom:
+                name: entplus.jfrog.io/devops-docker/jfrog/devops/jfrog-saas-deployer
+                tag: latest
+                autoPull: true
+                options: "--entrypoint=''"
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
   - name: Matrix_Step_Steplet_Image_Auto
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        inputResources:
-        - name: trigger_all
-        multiNode: true
-      stepletMultipliers:
-        runtimes:
-        - type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '16'
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          inputResources:
+            - name: trigger_all
+          multiNode: true
+        stepletMultipliers:
+          runtimes:
+          - type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '16'
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+        
   - name: Matrix_Step_Runtime_Steplet_Rutime
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        inputResources:
-        - name: trigger_all
-        multiNode: true
-        runtime:
-          type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '16'
-      stepletMultipliers:
-        runtimes:
-        - type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '17'
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          inputResources:
+            - name: trigger_all
+          multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '16'
+        stepletMultipliers:
+          runtimes:
+          - type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '17'
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
   - name: Matrix_Pipeline_Rutime_Step_Runtime_Steplet_Rutime
     configuration:
       inputResources:
-      - name: trigger_all
+        - name: trigger_all
       runtime:
         type: image
         image:
           auto:
             language: node
             versions:
-            - '15'
+              - '15'
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        multiNode: true
-        runtime:
-          type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '16'
-      stepletMultipliers:
-        runtimes:
-        - type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '17'
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '16'
+        stepletMultipliers:
+          runtimes:
+          - type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '17'
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
   - name: Matrix_Pipeline_Rutime_Step_Runtime
     configuration:
       inputResources:
-      - name: trigger_all
+        - name: trigger_all
       runtime:
         type: image
         image:
           auto:
             language: node
             versions:
-            - '15'
+              - '15'
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        multiNode: true
-        runtime:
-          type: image
-          image:
-            auto:
-              language: node
-              versions:
-              - '16'
-      stepletMultipliers:
-        environmentVariables:
-        - name: test
-        nodePools:
-        - windows
-        - pool
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '16'
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+          nodePools:
+            - windows
+            - pool
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
   - name: Matrix_NodePool_Pipeline_Rutime_Step_Runtime_Steplet_runtime
     configuration:
       inputResources:
-      - name: trigger_all
+        - name: trigger_all
       runtime:
         type: image
         image:
           auto:
             language: node
             versions:
-            - '15'
+              - '15'
     steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        multiNode: true
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                - '17'
+        stepletMultipliers:
+          runtimes:
+          - type: image
+            image:
+              auto:
+                language: node
+                versions:
+                - '16'
+          environmentVariables:
+            - name: test
+          nodePools:
+            - windows
+            - pool
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
+  - name: Matrix_NodePool_Pipeline_Rutime
+    configuration:
+      inputResources:
+        - name: trigger_all
+      runtime:
+        type: image
+        image:
+          auto:
+            language: node
+            versions:
+              - '15'
+    steps:
+      - name: matrix_1
+        type: Matrix
+        configuration:
+          multiNode: true
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+          nodePools:
+            - windows
+            - pool
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
+  - name: Matrix_Pipeline_Rutime
+    configuration:
+      inputResources:
+        - name: trigger_all
+      runtime:
+        type: image
+        image:
+          auto:
+            language: node
+            versions:
+              - '16'
+    steps:
+      - name: matrix_1
+        type: Matrix
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
+  - name: Matrix_Pipeline_Rutime_Step_Runtime
+    configuration:
+      inputResources:
+        - name: trigger_all
+      runtime:
+        type: image
+        image:
+          auto:
+            language: node
+            versions:
+              - '15'
+    steps:
+      - name: matrix_1
+        type: Matrix
         runtime:
           type: image
           image:
             auto:
               language: node
               versions:
-              - '17'
-      stepletMultipliers:
-        runtimes:
-        - type: image
-          image:
-            auto:
-              language: node
-              versions:
               - '16'
-        environmentVariables:
-        - name: test
-        nodePools:
-        - windows
-        - pool
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
-  - name: Matrix_NodePool_Pipeline_Rutime
-    configuration:
-      inputResources:
-      - name: trigger_all
-      runtime:
-        type: image
-        image:
-          auto:
-            language: node
-            versions:
-            - '15'
-    steps:
-    - name: matrix_1
-      type: Matrix
-      configuration:
-        multiNode: true
-      stepletMultipliers:
-        environmentVariables:
-        - name: test
-        nodePools:
-        - windows
-        - pool
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
-  - name: Matrix_Pipeline_Rutime
-    configuration:
-      inputResources:
-      - name: trigger_all
-      runtime:
-        type: image
-        image:
-          auto:
-            language: node
-            versions:
-            - '16'
-    steps:
-    - name: matrix_1
-      type: Matrix
-      stepletMultipliers:
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
-  - name: Matrix_Pipeline_Rutime_Step_Runtime
-    configuration:
-      inputResources:
-      - name: trigger_all
-      runtime:
-        type: image
-        image:
-          auto:
-            language: node
-            versions:
-            - '15'
-    steps:
-    - name: matrix_1
-      type: Matrix
-      runtime:
-        type: image
-        image:
-          auto:
-            language: node
-            versions:
-            - '16'
-      stepletMultipliers:
-        environmentVariables:
-        - name: test
-      execution:
-        onExecute:
-        - echo Im executing
-        onSuccess:
-        - echo 'i am onsuccess'
-        onFailure:
-        - echo 'i am onfailure'
-        onComplete:
-        - echo 'i am oncomplete'
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
