@@ -40,8 +40,8 @@ pipelines:
                   versions:
                     - '17'
           nodePools:
-            - name: pool
-            - name: windows
+            - pool
+            - windows
           environmentVariables:
             - name: test
         execution:
