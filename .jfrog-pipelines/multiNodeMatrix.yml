@@ -1,8 +1,8 @@
 pipelines:
   - name: Matrix_NodePool_Pipeline_Rutime_Varsha
     configuration:
-      nodePools:
-        - name: windows
+      nodePool:
+        - windows
       runtime:
         type: image
         image:
