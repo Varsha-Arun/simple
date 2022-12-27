@@ -288,8 +288,8 @@ pipelines:
           environmentVariables:
             - name: test
           nodePools:
-            - windows
-            - pool
+            - win_2019
+            - u18nodepool
         execution:
           onExecute:
             - echo Im executing
@@ -334,8 +334,8 @@ pipelines:
           environmentVariables:
             - name: test
           nodePools:
-            - windows
-            - pool
+            - win_2019
+            - u18nodepool
         execution:
           onExecute:
             - echo Im executing
@@ -366,8 +366,8 @@ pipelines:
           environmentVariables:
             - name: test
           nodePools:
-            - windows
-            - pool
+            - win_2019
+            - u18nodepool
         execution:
           onExecute:
             - echo Im executing
