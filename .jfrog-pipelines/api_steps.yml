@@ -3,6 +3,9 @@ pipelines:
     steps:
       - name: API_Step_1
         type: Bash
+        configuration:
+          timeoutSeconds: 6000
         execution:
           onExecute:
             - echo "testing"
+            - sleep 2m
