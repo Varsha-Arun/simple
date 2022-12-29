@@ -4,7 +4,7 @@ pipelines:
       - name: P_WF_step1
         type: Bash
         configuration:
-          inputresources:
+          inputResources:
             - name: r_WF_gr
           outputResources:
             - name: pb_branchSnapshot_version
