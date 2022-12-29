@@ -15,7 +15,9 @@ pipelines:
             - echo "executing step..."
             - sleep 10
             - write_output pb_branchSnapshot_version test=$run_number
-            
+
+
+  
             
 resources:
   - name: r_testsimplerepo
@@ -23,6 +25,10 @@ resources:
     configuration:
       gitProvider: varsha_github
       path: Varsha-Arun/simple
+      files:
+        include: installJenkins.sh
+      branches:
+        include: master
       
 # pipelines:
 #   - name: testGitrepoPipe
