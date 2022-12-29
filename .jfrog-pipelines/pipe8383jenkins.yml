@@ -1,24 +1,21 @@
 pipelines:
-
   - name: P_WF_pipelines
-    
     steps:
       - name: P_WF_step1
         type: Bash
         configuration:
           inputresources:
-            - name: gitrepo_simple_main
+            - name: r_testsimplerepo
           outputResources:
+            - name: pb_branchSnapshot_version
+          inputSteps:
             - name: pb_branchSnapshot_version
         execution:
           onExecute:
             - echo "executing step..."
             - sleep 10
-            - write_output pb_branchSnapshot_version test=$run_number
-
-
-  
-            
+            - write_output pb_branchSnapshot_version api_token=$run_number
+      
 resources:
   - name: r_testsimplerepo
     type: GitRepo
@@ -29,6 +26,11 @@ resources:
         include: installJenkins.sh
       branches:
         include: master
+        
+  - name: pb_branchSnapshot_version
+    type: PropertyBag
+    configuration:
+      api_token: ""
       
 # pipelines:
 #   - name: testGitrepoPipe
