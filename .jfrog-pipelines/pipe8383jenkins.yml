@@ -1,0 +1,48 @@
+pipelines:
+
+  - name: P_WF_pipelines
+    
+    steps:
+      - name: P_WF_step1
+        type: Bash
+        configuration:
+          inputresources:
+            - name: gitrepo_simple_main
+          outputResources:
+            - name: pb_branchSnapshot_version
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+            - write_output pb_branchSnapshot_version test=$run_number
+            
+            
+resources:
+  - name: r_testsimplerepo
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/simple
+      
+# pipelines:
+#   - name: testGitrepoPipe
+# #     configuration:
+# #       environmentVariables:
+# #         readOnly:
+# #           TEST_ENV: "pipelines"
+# #           JUST_FES: "options"
+# #           LOL_FOO: "test"
+#     steps:
+#       - name: testGitrepoStep
+#         type: Bash
+#         configuration:
+# #           environmentVariables:
+# #             key1: "value1"
+# #             key2: "value2"
+# #             key3: "value3"
+#           inputResources:
+#             - name: r_testsimplerepo
+#         execution:
+#           onExecute:
+#             - printenv
+#             - cd $res_r_stepTestReports_resourcePath
