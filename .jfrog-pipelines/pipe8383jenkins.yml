@@ -5,7 +5,7 @@ pipelines:
         type: Bash
         configuration:
           inputresources:
-            - name: r_testsimplerepo
+            - name: r_WF_gr
           outputResources:
             - name: pb_branchSnapshot_version
         execution:
@@ -16,7 +16,7 @@ pipelines:
             - node setup.js
       
 resources:
-  - name: r_testsimplerepo
+  - name: r_WF_gr
     type: GitRepo
     configuration:
       gitProvider: varsha_github
