@@ -8,8 +8,6 @@ pipelines:
             - name: r_testsimplerepo
           outputResources:
             - name: pb_branchSnapshot_version
-          inputSteps:
-            - name: pb_branchSnapshot_version
         execution:
           onExecute:
             - echo "executing step..."
