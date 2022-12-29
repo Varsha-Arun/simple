@@ -20,8 +20,6 @@ resources:
     configuration:
       gitProvider: varsha_github
       path: Varsha-Arun/simple
-      files:
-        include: installJenkins.sh
       branches:
         include: master
         
