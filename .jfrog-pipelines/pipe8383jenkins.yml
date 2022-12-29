@@ -12,7 +12,7 @@ pipelines:
           onExecute:
             - echo "executing step..."
             - write_output pb_branchSnapshot_version api_token=$run_number
-            - cd $res_r_testsimplerepo_resourcePath
+            - pushd $res_r_testsimplerepo_resourcePath
             - node setup.js
       
 resources:
