@@ -1,5 +1,13 @@
 pipelines:
   - name: P_WF_pipelines
+    configuration:
+      integrations:
+        - name: auto_ssh
+      environmentVariables:
+        readOnly:
+          IPAddress: ""
+            allowCustom: true
+          User: "varshaa"
     steps:
       - name: P_WF_step1
         type: Bash
@@ -10,9 +18,11 @@ pipelines:
             - name: pb_branchSnapshot_version
         execution:
           onExecute:
-            - echo "executing step..."
-            - write_output pb_branchSnapshot_version api_token=$run_number
+            - echo $IPAddress
             - pushd $res_r_testsimplerepo_resourcePath
+            - scp -i ${int_auto_ssh_privateKey} installJenkins.sh $IPAddress:/home/$User
+            - ssh -i ${int_auto_ssh_privateKey} $IPAddress "cd /home/$User; ./installJenkins.sh"
+            - write_output pb_branchSnapshot_version api_token=$run_number
             - node setup.js
       
 resources:
