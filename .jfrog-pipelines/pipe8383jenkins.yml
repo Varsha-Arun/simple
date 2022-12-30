@@ -5,7 +5,7 @@ pipelines:
         - name: auto_ssh
       environmentVariables:
         readOnly:
-          IPAddress: ""
+          IP_ADDRESS: "100.10.140.189"
             allowCustom: true
           User: "varshaa"
     steps:
@@ -20,10 +20,11 @@ pipelines:
           onExecute:
             - echo $IPAddress
             - pushd $res_r_testsimplerepo_resourcePath
-            - scp -i ${int_auto_ssh_privateKey} installJenkins.sh $IPAddress:/home/$User
-            - ssh -i ${int_auto_ssh_privateKey} $IPAddress "cd /home/$User; ./installJenkins.sh"
+            - scp -i ${int_auto_ssh_privateKey} installJenkins.sh $IP_ADDRESS:/home/$User
+            - ssh -i ${int_auto_ssh_privateKey} $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
+            - api_token=090909090909090900900
             - write_output pb_branchSnapshot_version api_token=$run_number
-            - node setup.js
+#             - node setup.js
       
 resources:
   - name: r_WF_gr
