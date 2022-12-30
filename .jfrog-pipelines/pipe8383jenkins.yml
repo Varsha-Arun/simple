@@ -19,7 +19,7 @@ pipelines:
             - name: pb_branchSnapshot_version
         execution:
           onExecute:
-            - echo $IPAddress
+            - echo $IP_ADDRESS
             - pushd $res_r_testsimplerepo_resourcePath
             - scp -i ${int_auto_ssh_privateKey} installJenkins.sh $IP_ADDRESS:/home/$User
             - ssh -i ${int_auto_ssh_privateKey} $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
