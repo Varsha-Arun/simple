@@ -20,7 +20,7 @@ pipelines:
         execution:
           onExecute:
             - echo $IP_ADDRESS
-            - pushd $res_r_testsimplerepo_resourcePath
+            - pushd $res_r_WF_gr_resourcePath
             - scp -i ${int_auto_ssh_privateKey} installJenkins.sh $IP_ADDRESS:/home/$User
             - ssh -i ${int_auto_ssh_privateKey} $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
             - api_token=090909090909090900900
