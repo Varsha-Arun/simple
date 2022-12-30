@@ -23,7 +23,7 @@ pipelines:
             - pushd $res_r_WF_gr_resourcePath
             - local pem_file_path=/tmp/pem_key
             - echo -e ${int_auto_ssh_privateKey} > pem_key
-            - chmod -cR 600 $pem_key
+            - chmod 600 $pem_key
             - scp -i $pem_key -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=0 -P 22 installJenkins.sh $IP_ADDRESS:/home/$User
 #             - ssh -i ${int_auto_ssh_privateKey} $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
 #             - api_token=090909090909090900900
