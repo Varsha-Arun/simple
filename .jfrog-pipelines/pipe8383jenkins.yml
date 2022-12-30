@@ -5,8 +5,9 @@ pipelines:
         - name: auto_ssh
       environmentVariables:
         readOnly:
-          IP_ADDRESS: "100.10.140.189"
+          IP_ADDRESS: 
             allowCustom: true
+            default: "100.10.140.189"
           User: "varshaa"
     steps:
       - name: P_WF_step1
