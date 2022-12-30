@@ -24,7 +24,6 @@ pipelines:
             - ssh -i ${int_auto_ssh_privateKey} $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
             - api_token=090909090909090900900
             - write_output pb_branchSnapshot_version api_token=$run_number
-#             - node setup.js
       
 resources:
   - name: r_WF_gr
