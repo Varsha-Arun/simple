@@ -2,7 +2,7 @@ pipelines:
   - name: P_WF_pipelines
     configuration:
       integrations:
-        - name: auto_ssh3
+        - name: auto_ssh
       environmentVariables:
         readOnly:
           IP_ADDRESS: 
@@ -11,7 +11,7 @@ pipelines:
           User: "automation"
           SSH_PRIVATE_KEY:
             allowCustom: false
-            default:  "${int_auto_ssh3_privateKey}"
+            default:  "${int_auto_ssh_privateKey}"
             description: "SSH private key value in automation"
     steps:
       - name: P_WF_step1
@@ -25,9 +25,9 @@ pipelines:
           onExecute:
             - echo $IP_ADDRESS
             - echo $User
-            - echo ${int_auto_ssh3_privateKey}
+            - echo ${int_auto_ssh_privateKey}
             - echo $SSH_PRIVATE_KEY
-            - echo ${int_auto_ssh3_publicKey}
+            - echo ${int_auto_ssh_publicKey}
             - pushd $res_r_WF_gr_resourcePath
             - touch /tmp/pem_key.pem
             - echo $SSH_PRIVATE_KEY > /tmp/pem_key.pem
@@ -36,7 +36,7 @@ pipelines:
             - cat /tmp/pem_key.pem
             - cat installJenkins.sh
             - chmod 600 /tmp/pem_key.pem
-            - scp -i ${int_auto_ssh3_privateKey} -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=0 -P 22 installJenkins.sh $IP_ADDRESS:/home/$User
+            - scp -i ${int_auto_ssh_privateKey} -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=0 -P 22 installJenkins.sh $IP_ADDRESS:/home/$User
 #             - ssh -i pem_file_path $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
 #             - api_token=090909090909090900900
 #             - write_output pb_branchSnapshot_version api_token=$run_number
