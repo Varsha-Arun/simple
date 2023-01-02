@@ -20,6 +20,8 @@ pipelines:
         execution:
           onExecute:
             - echo $IP_ADDRESS
+            - echo ${int_auto_ssh_privateKey}
+            - echo ${int_auto_ssh_publicKey}
             - pushd $res_r_WF_gr_resourcePath
             - touch /tmp/pem_key
             - echo -e ${int_auto_ssh_privateKey} > /tmp/pem_key
