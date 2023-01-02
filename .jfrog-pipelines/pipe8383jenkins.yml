@@ -9,6 +9,10 @@ pipelines:
             allowCustom: true
             default: "100.10.129.167"
           User: "automation"
+          SSH_PRIVATE_KEY:
+            allowCustom: false
+            default:  "${int_auto_ssh_privateKey}"
+            description: "SSH private key value in automation"
     steps:
       - name: P_WF_step1
         type: Bash
@@ -22,10 +26,11 @@ pipelines:
             - echo $IP_ADDRESS
             - echo $User
             - echo ${int_auto_ssh_privateKey}
+            - echo $SSH_PRIVATE_KEY
             - echo ${int_auto_ssh_publicKey}
             - pushd $res_r_WF_gr_resourcePath
             - touch /tmp/pem_key.pem
-            - echo -e ${int_auto_ssh_privateKey} > /tmp/pem_key.pem
+            - echo $SSH_PRIVATE_KEY > /tmp/pem_key.pem
             - ls -la
             - ls -la /tmp
             - cat /tmp/pem_key.pem
