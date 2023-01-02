@@ -7,7 +7,7 @@ pipelines:
         readOnly:
           IP_ADDRESS: 
             allowCustom: true
-            default: "100.10.140.189"
+            default: "100.10.158.24"
           User: "varshaa"
     steps:
       - name: P_WF_step1
