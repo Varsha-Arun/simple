@@ -3,6 +3,7 @@ pipelines:
     configuration:
       integrations:
         - name: auto_ssh
+        - name: varsha_github
       environmentVariables:
         readOnly:
           IP_ADDRESS: 
@@ -26,6 +27,7 @@ pipelines:
             - echo $IP_ADDRESS
             - echo $User
             - echo ${int_auto_ssh_privateKey}
+            - echo ${int_varsha_github_token}
             - echo $SSH_PRIVATE_KEY
             - echo ${int_auto_ssh_publicKey}
             - pushd $res_r_WF_gr_resourcePath
