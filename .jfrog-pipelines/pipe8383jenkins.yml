@@ -8,7 +8,7 @@ pipelines:
         readOnly:
           IP_ADDRESS: 
             allowCustom: true
-            default: "100.10.129.167"
+            default: "100.10.151.200"
           User: "automation"
           SSH_PRIVATE_KEY:
             allowCustom: false
