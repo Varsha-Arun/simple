@@ -33,6 +33,7 @@ pipelines:
             - pushd $res_r_WF_gr_resourcePath
             - touch /tmp/pem_key.pem
             - echo $SSH_PRIVATE_KEY > /tmp/pem_key.pem
+            - cat /tmp/pem_key.pem
             - ls -la
             - ls -la /tmp
             - cat /tmp/pem_key.pem
