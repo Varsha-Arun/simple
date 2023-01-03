@@ -8,7 +8,7 @@ pipelines:
         readOnly:
           IP_ADDRESS: 
             allowCustom: true
-            default: "100.10.151.200"
+            default: "100.10.131.240"
           User: "automation"
           SSH_PRIVATE_KEY:
             allowCustom: false
@@ -39,6 +39,7 @@ pipelines:
             - cat /tmp/pem_key.pem
             - cat installJenkins.sh
             - chmod 600 /tmp/pem_key.pem
+            - ping 
             - scp -i /tmp/pem_key.pem -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=0 -P 22 installJenkins.sh $IP_ADDRESS:/home/$User
 #             - ssh -i pem_file_path $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
 #             - api_token=090909090909090900900
