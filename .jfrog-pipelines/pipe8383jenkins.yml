@@ -38,8 +38,7 @@ pipelines:
             - ls -la /tmp
             - cat /tmp/pem_key.pem
             - cat installJenkins.sh
-            - chmod 600 /tmp/pem_key.pem
-            - ping 
+            - chmod 600 /tmp/pem_key.pem 
             - scp -i /tmp/pem_key.pem -o StrictHostKeyChecking=no -o NumberOfPasswordPrompts=0 -P 22 installJenkins.sh $IP_ADDRESS:/home/$User
 #             - ssh -i pem_file_path $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
 #             - api_token=090909090909090900900
