@@ -44,16 +44,16 @@ pipelines:
 #             - api_token=090909090909090900900
 #             - write_output pb_branchSnapshot_version api_token=$run_number
 
-  - name: test_app
-    type: Jenkins
-    configuration:
-      inputSteps:
-        - name: p1_s2
-      jenkinsJobName: testFolder/pipetest
-      integrations:
-        - name: int_jenkins2
-      outputResources:
-        - name: myPropertyBag
+#   - name: test_app
+#     type: Jenkins
+#     configuration:
+#       inputSteps:
+#         - name: p1_s2
+#       jenkinsJobName: testFolder/pipetest
+#       integrations:
+#         - name: int_jenkins2
+#       outputResources:
+#         - name: myPropertyBag
         
 resources:
   - name: r_WF_gr
