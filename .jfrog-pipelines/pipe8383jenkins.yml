@@ -41,6 +41,7 @@ pipelines:
 #             - ls -la /tmp
 #             - cat /tmp/pem_key.pem
             - cat installJenkins.sh
+            - chmod +x installJenkins.sh
             - ./installJenkins.sh
 #             - chmod 400 /tmp/pem_key.pem
 #             - apt-get update 
