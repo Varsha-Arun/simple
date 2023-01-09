@@ -39,6 +39,7 @@ pipelines:
             - cat /tmp/pem_key.pem
             - cat installJenkins.sh
             - chmod 400 /tmp/pem_key.pem
+            - telnet $IP_ADDRESS 22
             - scp -i /tmp/pem_key.pem installJenkins.sh ubuntu@$IP_ADDRESS:/home/ubuntu
 #             - ssh -i pem_file_path $IP_ADDRESS "cd /home/$User; ./installJenkins.sh"
 #             - api_token=090909090909090900900
