@@ -37,3 +37,4 @@ pipelines:
             - printenv
             - echo "Step c"
             - echo "me ending" 
+            - ls -la
