@@ -37,7 +37,7 @@ pipelines:
             - ls -la
             - ls -la /tmp
             - cat /tmp/pem_key.pem
-            - cat installJenkins.sh
+#             - cat installJenkins.sh
             - chmod 400 /tmp/pem_key.pem
             - apt-get update 
             - apt-get install telnet
