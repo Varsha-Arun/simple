@@ -1,37 +1,37 @@
-pipelines:
-  - name: testPreAndPostRuns
-    preRun:
-      execution:
-        onExecute:
-          - printenv
-          - echo "Executing Pre Run"
-    postRun:
-      execution:
-        onExecute:
-          - printenv
-          - echo "Executing Pre Run"
-    steps:
-      - name: A
-        type: Bash
-        execution:
-          onExecute:
-            - printenv
-            - echo "Step A"
-      - name: B
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: A
-        execution:
-          onExecute:
-            - printenv
-            - echo "Step B"
-      - name: C
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: A
-        execution:
-          onExecute:
-            - printenv
-            - echo "Step B"
+# pipelines:
+#   - name: testPreAndPostRuns
+#     preRun:
+#       execution:
+#         onExecute:
+#           - printenv
+#           - echo "Executing Pre Run"
+#     postRun:
+#       execution:
+#         onExecute:
+#           - printenv
+#           - echo "Executing Pre Run"
+#     steps:
+#       - name: A
+#         type: Bash
+#         execution:
+#           onExecute:
+#             - printenv
+#             - echo "Step A"
+#       - name: B
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: A
+#         execution:
+#           onExecute:
+#             - printenv
+#             - echo "Step B"
+#       - name: C
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: A
+#         execution:
+#           onExecute:
+#             - printenv
+#             - echo "Step B"
