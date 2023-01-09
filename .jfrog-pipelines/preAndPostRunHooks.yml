@@ -5,6 +5,7 @@ pipelines:
         onExecute:
           - printenv
           - echo "Executing Pre Run"
+          - echo "me starting"
     postRun:
       execution:
         onExecute:
@@ -34,4 +35,5 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - echo "Step B"
+            - echo "Step c"
+            - echo "me ending"
