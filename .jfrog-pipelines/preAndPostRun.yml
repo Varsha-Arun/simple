@@ -9,7 +9,7 @@ pipelines:
       execution:
         onExecute:
           - printenv
-          - echo "Executing Pre Run"
+          - echo "Executing Post Run"
     steps:
       - name: A
         type: Bash
