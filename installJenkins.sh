@@ -1,6 +1,6 @@
 #! /bin/bash -e
 
-IP_ADDR=$1
+IP_ADDR=localhost
 URL=http://${IP_ADDR}:8080
 USER="admin"
 PASSWORD="Password@1"
