@@ -71,6 +71,3 @@ resources:
     type: PropertyBag
     configuration:
       api_token: ""
-      
-
-
