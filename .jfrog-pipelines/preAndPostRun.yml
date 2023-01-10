@@ -34,7 +34,7 @@ pipelines:
         execution:
           onExecute:
             - printenv
-            - echo "Step B"
+            - echo "Step C"
 
 
 #   - name: Matrix_NodePool_Pipeline_Rutime_Varsha
