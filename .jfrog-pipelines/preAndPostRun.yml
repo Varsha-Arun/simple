@@ -5,6 +5,7 @@ pipelines:
         onExecute:
           - printenv
           - echo "Executing Pre Run"
+          - echo "new"
     postRun:
       execution:
         onExecute:
