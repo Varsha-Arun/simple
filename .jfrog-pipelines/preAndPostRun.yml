@@ -6,11 +6,7 @@ pipelines:
           - printenv
           - echo "Executing Pre Run"
           - echo "new"
-    postRun:
-      execution:
-        onExecute:
-          - printenv
-          - echo "Executing Post Run"
+
     steps:
       - name: A
         type: Bash
