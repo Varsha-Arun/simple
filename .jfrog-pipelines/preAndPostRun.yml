@@ -1,5 +1,27 @@
+resources:
+
+  - name: resource_A_Pipeinfo_gitRepo_v1
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/Org_test_Automation
+      branches:
+        include: master
+      gitProvider: varsha_github
+
+  - name: resource_A_stepArtifact_propertyBag_v1
+    type: PropertyBag
+    configuration:
+      commitSha: 1
+      runID: 1
+      
 pipelines:
   - name: RunHooksPipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          TEST_ENV: "pipelines"
+          JUST_FES: "options"
+          LOL_FOO: "test"
     preRun:
       execution:
         onExecute:
@@ -17,31 +39,7 @@ pipelines:
           - echo "new"
           - set_run_name 'post run name'
           - update_run_description 'test post run desc'
-    steps:
-resources:
 
-  - name: resource_A_Pipeinfo_gitRepo_v1
-    type: GitRepo
-    configuration:
-      path: Varsha-Arun/Org_test_Automation
-      branches:
-        include: master
-      gitProvider: varsha_github
-
-  - name: resource_A_stepArtifact_propertyBag_v1
-    type: PropertyBag
-    configuration:
-      commitSha: 1
-      runID: 1
-
-pipelines:
-  - name: P_stepTestReports_v1
-    configuration:
-      environmentVariables:
-        readOnly:
-          TEST_ENV: "pipelines"
-          JUST_FES: "options"
-          LOL_FOO: "test"
     steps:
       - name: s_stepTestReports_v1
         type: Bash
