@@ -309,7 +309,7 @@ pipelines:
           JUST_FES: "options"
           LOL_FOO: "test"
     steps:
-    - name: step_update
+      - name: step_update
         type: Bash
         configuration:
           environmentVariables:
