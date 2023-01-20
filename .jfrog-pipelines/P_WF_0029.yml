@@ -325,7 +325,6 @@ pipelines:
             key41: "value41"
             key42: "value42"
             key43: "value43"
-        configuration:
           inputResources:
             - name: res_et_51
             - name: res_rem_52
