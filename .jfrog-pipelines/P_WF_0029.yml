@@ -2815,8 +2815,4 @@ pipelines:
             - name: res_hic_8
             - name: res_nihil_10
             - name: res_necessitatibus_21
-    configuration:
-      dependencyMode:
-        waitOnParentComplete: true
-        waitOnParentSuccess: true
-        waitOnChildComplete: true
+
