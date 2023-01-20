@@ -6,8 +6,8 @@ pipelines:
           - printenv
           - echo "Executing Pre Run"
           - echo "new"
-          - set_run_name 'test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_'
-          - update_run_description 'test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_'
+          - set_run_name 'pre run name'
+          - update_run_description 'pre run desc'
             
     postRun:
       execution:
@@ -18,30 +18,103 @@ pipelines:
           - set_run_name 'post run name'
           - update_run_description 'test post run desc'
     steps:
-      - name: A
+resources:
+
+  - name: resource_A_Pipeinfo_gitRepo_v1
+    type: GitRepo
+    configuration:
+      path: Varsha-Arun/Org_test_Automation
+      branches:
+        include: master
+      gitProvider: varsha_github
+
+  - name: resource_A_stepArtifact_propertyBag_v1
+    type: PropertyBag
+    configuration:
+      commitSha: 1
+      runID: 1
+
+pipelines:
+  - name: P_stepTestReports_v1
+    configuration:
+      environmentVariables:
+        readOnly:
+          TEST_ENV: "pipelines"
+          JUST_FES: "options"
+          LOL_FOO: "test"
+    steps:
+      - name: s_stepTestReports_v1
         type: Bash
+        configuration:
+          environmentVariables:
+            key1: "value1"
+            key2: "value2"
+            key3: "value3"
+          inputResources:
+            - name: resource_A_Pipeinfo_gitRepo_v1
         execution:
           onExecute:
-            - printenv
-            - echo "Step A"
-      - name: B
+            - cd $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath
+            - add_run_files tests/core/sampleExecutionFile/calc.py my_files
+            - python3 -m py_compile tests/core/sampleExecutionFile/calc.py
+            - pip install --upgrade pip
+            - hash -d pip
+            - pip install pytest
+            - cd $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath
+            - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
+            - save_tests $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath/test-reports/results.xml
+            - restore_run_files my_files tests/core/sampleExecutionFile/calc.py
+            
+      - name: s_stepArtifacts_001_v1
+        type: Bash
+        configuration:
+          inputResources:
+            - name: resource_A_Pipeinfo_gitRepo_v1
+          integrations:
+            - name: varsha_github
+        execution:
+          onExecute:
+            - echo "executing step api_pipeinfo_step1"
+          onComplete:
+            - add_run_variables current_runid=$run_id
+            - add_run_variables commitSha=$res_jatin_gitrepo2_commitSha
+            
+      - name: s_stepArtifacts_002_v1
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          inputSteps:
+            - name: s_stepArtifacts_001_v1
+        stepletMultipliers:
+          environmentVariables:
+            - animal:    dog
+              mineral:   copper
+              vegetable: carrot
+            - animal:    goat
+              mineral:   iron
+              vegetable: broccoli
+            - animal:    lizard
+              mineral:   lead
+        execution:
+          onExecute:
+            - echo "I am executing matrix steplet \${steplet_id}"
+            - echo "Envs animal= $animal , mineral = $mineral , vegetable = $vegetable"
+      - name: s_stepArtifacts_003_v1
         type: Bash
         configuration:
           inputSteps:
-            - name: A
+            - name: s_stepArtifacts_002_v1
+          outputResources:
+            - name: resource_A_stepArtifact_propertyBag_v1
         execution:
           onExecute:
-            - printenv
-            - echo "Step B"
-      - name: C
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: A
-        execution:
-          onExecute:
-            - printenv
-            - echo "Step C"
+#             - set_run_name 'testRunName'
+#             - update_run_description 'testRunDescription'
+            - echo $current_runid
+            - add_pipeline_variables prev_runid=$run_id
+            - write_output resource_A_stepArtifact_propertyBag_v1 commitSha=$commitSha runID=$current_runid
+            - set_run_name 'test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_'
+            - update_run_description 'test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_'
 
 
   - name: Matrix_NodePool_Pipeline_Rutime_Varsha
@@ -128,3 +201,5 @@ pipelines:
             - echo 'i am onfailure'
           onComplete:
             - echo 'i am oncomplete'
+            
+            
