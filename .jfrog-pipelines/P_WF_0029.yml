@@ -249,9 +249,79 @@ resources:
     configuration:
       key1: value1
       key2: value2
+  - name: res_et_51
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_rem_52
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_neque_53
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_molestias_54
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_magni_55
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_et_56
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_rem_57
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_neque_58
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_molestias_59
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
+  - name: res_magni_60
+    type: PropertyBag
+    configuration:
+      key1: value1
+      key2: value2
 pipelines:
   - name: P_WF_0029
     steps:
+    - name: step_update
+        type: Bash
+        execution:
+          onExecute:
+            - 'echo "Executing step on ${stepvar_id}"'
+            - export date=$(date)
+            - printenv
+        configuration:
+          inputResources:
+            - name: res_et_51
+            - name: res_rem_52
+            - name: res_neque_53
+            - name: res_molestias_54
+            - name: res_magni_55
+            - name: res_et_56
+            - name: res_rem_57
+            - name: res_neque_58
+            - name: res_molestias_59
+            - name: res_magni_60
+            
       - name: step_saepe_1
         type: Bash
         execution:
@@ -270,6 +340,8 @@ pipelines:
             - printenv
             - printenv
         configuration:
+          inputSteps:
+            - name: step_update
           outputResources:
             - name: res_voluptatem_33
             - name: res_voluptatem_6
