@@ -154,7 +154,7 @@ pipelines:
                 auto:
                   language: node
                   versions:
-                    - '17'
+                    - '16'
           nodePools:
             - u18dynamic
             - win_2019
