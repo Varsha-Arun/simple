@@ -299,17 +299,6 @@ resources:
     configuration:
       key1: value1
       key2: value2
-      
-      configuration:
-      environmentVariables:
-        readOnly:
-          TEST_ENV: "pipelines"
-          JUST_FES: "options"
-          LOL_FOO: "test"
-    steps:
-      - name: s_stepTestReports
-        type: Bash
-        
             
 pipelines:
   - name: P_WF_0029
