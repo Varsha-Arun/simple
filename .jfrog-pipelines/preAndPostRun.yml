@@ -6,7 +6,17 @@ pipelines:
           - printenv
           - echo "Executing Pre Run"
           - echo "new"
-
+          - set_run_name 'test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_'
+          - update_run_description 'test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_'
+            
+    postRun:
+      execution:
+        onExecute:
+          - printenv
+          - echo "Executing Pre Run"
+          - echo "new"
+          - set_run_name 'post run name'
+          - update_run_description 'test post run desc'
     steps:
       - name: A
         type: Bash
