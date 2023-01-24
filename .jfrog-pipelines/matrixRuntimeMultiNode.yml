@@ -1,3 +1,9 @@
+resources:
+  - name: triggerMatrixRuntime
+    type: PropertyBag
+    configuration:
+      key: value
+
 pipelines:
   - name: Matrix_NodePool_Pipeline_Rutime
     configuration:
