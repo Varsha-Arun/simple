@@ -172,6 +172,18 @@ pipelines:
                   tag: latest
                   autoPull: true
                   options: "--entrypoint=''"
+            - type: image
+              image:
+                auto:
+                  language: node
+                  versions:
+                    - '15'
+            - type: image
+              image:
+                auto:
+                  language: go
+                  versions:
+                    - '1.17'
           environmentVariables:
             - name: test
         execution:
