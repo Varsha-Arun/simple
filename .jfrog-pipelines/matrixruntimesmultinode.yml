@@ -50,7 +50,7 @@ pipelines:
       - name: matrix_1
         type: Matrix
         configuration:
-#           multiNode: true
+          multiNode: true
           inputResources:
             - name: triggerMatrixRuntime
           runtime:
@@ -75,7 +75,7 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -104,7 +104,7 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -132,7 +132,7 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-#           multiNode: true
+          multiNode: true
         stepletMultipliers:
           runtimes:
             - type: host
@@ -155,7 +155,7 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -191,11 +191,11 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-#           multiNode: true
+          multiNode: true
         stepletMultipliers:
-#           nodePools:
-#             - win_2019
-#             - u18dynamic
+          nodePools:
+            - win_2019
+            - u18dynamic
           runtimes:
             - type: image
               image:
@@ -222,7 +222,7 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -265,7 +265,7 @@ pipelines:
       - name: matrix_1
         type: Matrix
         configuration:
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -298,7 +298,7 @@ pipelines:
       - name: matrix_1
         type: Matrix
         configuration:
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -309,9 +309,9 @@ pipelines:
         stepletMultipliers:
           environmentVariables:
             - name: test
-#           nodePools:
-#             - win_2019
-#             - u18dynamic
+          nodePools:
+            - win_2019
+            - u18dynamic
         execution:
           onExecute:
             - echo Im executing
@@ -337,7 +337,7 @@ pipelines:
       - name: matrix_1
         type: Matrix
         configuration:
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -355,9 +355,9 @@ pipelines:
                   - '16'
           environmentVariables:
             - name: test
-#           nodePools:
-#             - win_2019
-#             - u18dynamic
+          nodePools:
+            - win_2019
+            - u18dynamic
         execution:
           onExecute:
             - echo Im executing
@@ -383,7 +383,7 @@ pipelines:
       - name: matrix_1
         type: Matrix
         configuration:
-#           multiNode: true
+          multiNode: true
           runtime:
             type: image
             image:
@@ -401,9 +401,9 @@ pipelines:
                   - '16'
           environmentVariables:
             - name: test
-#           nodePools:
-#             - win_2019
-#             - u18dynamic
+          nodePools:
+            - win_2019
+            - u18dynamic
         execution:
           onExecute:
             - echo Im executing
@@ -428,14 +428,14 @@ pipelines:
     steps:
       - name: matrix_1
         type: Matrix
-#         configuration:
-#           multiNode: true
+        configuration:
+          multiNode: true
         stepletMultipliers:
           environmentVariables:
             - name: test
-#           nodePools:
-#             - win_2019
-#             - u18dynamic
+          nodePools:
+            - win_2019
+            - u18dynamic
         execution:
           onExecute:
             - echo Im executing
