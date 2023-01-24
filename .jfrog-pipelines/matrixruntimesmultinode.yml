@@ -23,7 +23,7 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
   
-  - name: Matrix_Step_Type_Host_multiNode
+  - name: Matrix_Step_Type_Host
     steps:
       - name: matrix_1
         type: Matrix
