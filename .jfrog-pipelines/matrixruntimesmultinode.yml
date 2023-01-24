@@ -236,7 +236,7 @@ pipelines:
             image:
               auto:
                 language: java
-                version: 11
+                version: '11'
           environmentVariables:
             - name: test
         execution:
