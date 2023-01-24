@@ -109,9 +109,9 @@ pipelines:
             type: image
             image:
               auto:
-                language: node
+                language: java
                 versions:
-                  - '16'
+                  - '17'
         stepletMultipliers:
           environmentVariables:
             - name: test
@@ -175,9 +175,9 @@ pipelines:
             - type: image
               image:
                 auto:
-                  language: node
+                  language: java
                   versions:
-                    - '15'
+                    - '17'
             - type: image
               image:
                 auto:
@@ -288,6 +288,12 @@ pipelines:
         stepletMultipliers:
           runtimes:
             - type: host
+            - type: image
+              image:
+                auto:
+                  language: java
+                  versions:
+                    - '17'
           environmentVariables:
             - name: test
         execution:
@@ -315,9 +321,9 @@ pipelines:
             type: image
             image:
               auto:
-                language: node
+                language: java
                 versions:
-                  - '16'
+                  - '17'
         stepletMultipliers:
           environmentVariables:
             - name: test
@@ -364,13 +370,13 @@ pipelines:
                 auto:
                   language: node
                   versions:
-                  - '16'
+                  - '14'
             - type: image
               image:
                 auto:
                   language: java
                   versions:
-                  - '11'
+                  - '17'
             - type: image
               image:
                 auto:
@@ -420,9 +426,9 @@ pipelines:
             - type: image
               image:
                 auto:
-                  language: node
+                  language: java
                   versions:
-                  - '16'
+                  - '17'
           environmentVariables:
             - name: test
           nodePools:
@@ -446,9 +452,9 @@ pipelines:
         type: image
         image:
           auto:
-            language: node
+            language: java
             versions:
-              - '15'
+              - '17'
     steps:
       - name: matrix_1
         type: Matrix
@@ -478,9 +484,9 @@ pipelines:
         type: image
         image:
           auto:
-            language: node
+            language: java
             versions:
-              - '16'
+              - '17'
     steps:
       - name: matrix_1
         type: Matrix
@@ -516,9 +522,9 @@ pipelines:
             type: image
             image:
               auto:
-                language: node
+                language: java
                 versions:
-                - '16'
+                - '17'
         stepletMultipliers:
           environmentVariables:
             - name: test
