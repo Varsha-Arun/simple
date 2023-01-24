@@ -193,9 +193,9 @@ pipelines:
             - name: triggerMatrixRuntime
 #           multiNode: true
         stepletMultipliers:
-          nodePools:
-            - win_2019
-            - u18dynamic
+#           nodePools:
+#             - win_2019
+#             - u18dynamic
           runtimes:
             - type: image
               image:
