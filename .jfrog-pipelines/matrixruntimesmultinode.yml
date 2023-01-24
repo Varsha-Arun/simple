@@ -289,7 +289,7 @@ pipelines:
             - name: test
           nodePools:
             - win_2019
-            - u18nodepool
+            - u18dynamic
         execution:
           onExecute:
             - echo Im executing
@@ -335,7 +335,7 @@ pipelines:
             - name: test
           nodePools:
             - win_2019
-            - u18nodepool
+            - u18dynamic
         execution:
           onExecute:
             - echo Im executing
@@ -367,7 +367,7 @@ pipelines:
             - name: test
           nodePools:
             - win_2019
-            - u18nodepool
+            - u18dynamic
         execution:
           onExecute:
             - echo Im executing
