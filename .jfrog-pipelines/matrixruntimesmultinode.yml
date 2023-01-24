@@ -365,6 +365,18 @@ pipelines:
                   language: node
                   versions:
                   - '16'
+            - type: image
+              image:
+                auto:
+                  language: java
+                  versions:
+                  - '11'
+            - type: image
+              image:
+                auto:
+                  language: go
+                  versions:
+                  - '1.17'
           environmentVariables:
             - name: test
           nodePools:
