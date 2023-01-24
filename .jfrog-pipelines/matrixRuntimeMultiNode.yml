@@ -377,39 +377,7 @@ pipelines:
             - echo 'i am onfailure'
           onComplete:
             - echo 'i am oncomplete'
-          
-  - name: Matrix_NodePool_Pipeline_Rutime
-    configuration:
-      inputResources:
-        - name: triggerMatrixRuntime
-      runtime:
-        type: image
-        image:
-          auto:
-            language: node
-            versions:
-              - '15'
-    steps:
-      - name: matrix_1
-        type: Matrix
-        configuration:
-          multiNode: true
-        stepletMultipliers:
-          environmentVariables:
-            - name: test
-          nodePools:
-            - win_2019
-            - u18nodepool
-        execution:
-          onExecute:
-            - echo Im executing
-          onSuccess:
-            - echo 'i am onsuccess'
-          onFailure:
-            - echo 'i am onfailure'
-          onComplete:
-            - echo 'i am oncomplete'
-          
+        
   - name: Matrix_Pipeline_Rutime
     configuration:
       inputResources:
