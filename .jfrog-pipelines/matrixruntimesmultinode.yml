@@ -427,7 +427,7 @@ pipelines:
     steps:
       - name: matrix_1
         type: Matrix
-        configuration:
+#         configuration:
 #           multiNode: true
         stepletMultipliers:
           environmentVariables:
