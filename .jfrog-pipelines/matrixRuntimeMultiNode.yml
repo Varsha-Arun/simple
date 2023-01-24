@@ -15,7 +15,7 @@ pipelines:
           auto:
             language: node
             versions:
-              - '15'
+              - '16'
     steps:
       - name: matrix_1
         type: Matrix
