@@ -22,13 +22,35 @@ pipelines:
             - echo 'i am onfailure'
           onComplete:
             - echo 'i am oncomplete'
-        
-  - name: Matrix_Step_Type_Host
+  
+  - name: Matrix_Step_Type_Host_multiNode
     steps:
       - name: matrix_1
         type: Matrix
         configuration:
-          multiNode: true
+          inputResources:
+            - name: triggerMatrixRuntime
+          runtime:
+            type: host
+        stepletMultipliers:
+          environmentVariables:
+          - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+            
+  - name: Matrix_Step_Type_Host_multiNode
+    steps:
+      - name: matrix_1
+        type: Matrix
+        configuration:
+#           multiNode: true
           inputResources:
             - name: triggerMatrixRuntime
           runtime:
@@ -53,7 +75,7 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-          multiNode: true
+#           multiNode: true
           runtime:
             type: image
             image:
@@ -82,7 +104,7 @@ pipelines:
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-          multiNode: true
+#           multiNode: true
           runtime:
             type: image
             image:
@@ -103,14 +125,14 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
           
-  - name: Matrix_Step_Steplet_Host
+  - name: Matrix_MultiNode_Steplet_Host
     steps:
       - name: matrix_1
         type: Matrix
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-          multiNode: true
+#           multiNode: true
         stepletMultipliers:
           runtimes:
             - type: host
@@ -126,23 +148,30 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
           
-  - name: Matrix_Step_Steplet_Image_Custom
+  - name: Matrix_Step_Steplet_Image_Custom_multiNode
     steps:
       - name: matrix_1
         type: Matrix
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-          multiNode: true
+#           multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '16'
         stepletMultipliers:
           runtimes:
-          - type: image
-            image:
-              custom:
-                name: entplus.jfrog.io/devops-docker/jfrog/devops/jfrog-saas-deployer
-                tag: latest
-                autoPull: true
-                options: "--entrypoint=''"
+            - type: image
+              image:
+                custom:
+                  name: entplus.jfrog.io/devops-docker/jfrog/devops/jfrog-saas-deployer
+                  tag: latest
+                  autoPull: true
+                  options: "--entrypoint=''"
           environmentVariables:
             - name: test
         execution:
@@ -155,22 +184,25 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
           
-  - name: Matrix_Step_Steplet_Image_Auto
+  - name: Matrix_MultiNode_Steplet_Image_Auto
     steps:
       - name: matrix_1
         type: Matrix
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-          multiNode: true
+#           multiNode: true
         stepletMultipliers:
+          nodePools:
+            - win_2019
+            - u18dynamic
           runtimes:
-          - type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - '16'
+            - type: image
+              image:
+                auto:
+                  language: go
+                  versions:
+                    - '17'
           environmentVariables:
             - name: test
         execution:
@@ -183,14 +215,56 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
         
-  - name: Matrix_Step_Runtime_Steplet_Rutime
+  - name: Matrix_MultiNode_Step_Runtime_Steplet_Rutime
     steps:
       - name: matrix_1
         type: Matrix
         configuration:
           inputResources:
             - name: triggerMatrixRuntime
-          multiNode: true
+#           multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '17'
+        stepletMultipliers:
+          runtimes:
+          - type: image
+            image:
+              auto:
+                language: java
+                version: 11
+          environmentVariables:
+            - name: test
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+          
+  - name: Matrix_Pipeline_Rutime_Step_Runtime_Steplet_Rutime_host
+    configuration:
+      inputResources:
+        - name: triggerMatrixRuntime
+      runtime:
+        type: image
+        image:
+          auto:
+            language: node
+            versions:
+              - '15'
+    steps:
+      - name: matrix_1
+        type: Matrix
+        configuration:
+#           multiNode: true
           runtime:
             type: image
             image:
@@ -200,12 +274,7 @@ pipelines:
                   - '16'
         stepletMultipliers:
           runtimes:
-          - type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - '17'
+            - type: host
           environmentVariables:
             - name: test
         execution:
@@ -218,65 +287,17 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
           
-  - name: Matrix_Pipeline_Rutime_Step_Runtime_Steplet_Rutime
+  - name: Matrix_MultiNode_Pipeline_Rutime_Step_Runtime
     configuration:
       inputResources:
         - name: triggerMatrixRuntime
       runtime:
-        type: image
-        image:
-          auto:
-            language: node
-            versions:
-              - '15'
+        type: host
     steps:
       - name: matrix_1
         type: Matrix
         configuration:
-          multiNode: true
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - '16'
-        stepletMultipliers:
-          runtimes:
-          - type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - '17'
-          environmentVariables:
-            - name: test
-        execution:
-          onExecute:
-            - echo Im executing
-          onSuccess:
-            - echo 'i am onsuccess'
-          onFailure:
-            - echo 'i am onfailure'
-          onComplete:
-            - echo 'i am oncomplete'
-          
-  - name: Matrix_Multi_Node_Pipeline_Rutime_Step_Runtime
-    configuration:
-      inputResources:
-        - name: triggerMatrixRuntime
-      runtime:
-        type: image
-        image:
-          auto:
-            language: node
-            versions:
-              - '15'
-    steps:
-      - name: matrix_1
-        type: Matrix
-        configuration:
-          multiNode: true
+#           multiNode: true
           runtime:
             type: image
             image:
@@ -287,9 +308,9 @@ pipelines:
         stepletMultipliers:
           environmentVariables:
             - name: test
-          nodePools:
-            - win_2019
-            - u18dynamic
+#           nodePools:
+#             - win_2019
+#             - u18dynamic
         execution:
           onExecute:
             - echo Im executing
@@ -300,7 +321,7 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
           
-  - name: Matrix_NodePool_Pipeline_Rutime_Step_Runtime_Steplet_runtime
+  - name: Matrix_multiNode_Pipeline_Rutime_Step_Runtime_Steplet_runtime
     configuration:
       inputResources:
         - name: triggerMatrixRuntime
@@ -315,7 +336,7 @@ pipelines:
       - name: matrix_1
         type: Matrix
         configuration:
-          multiNode: true
+#           multiNode: true
           runtime:
             type: image
             image:
@@ -333,9 +354,9 @@ pipelines:
                   - '16'
           environmentVariables:
             - name: test
-          nodePools:
-            - win_2019
-            - u18dynamic
+#           nodePools:
+#             - win_2019
+#             - u18dynamic
         execution:
           onExecute:
             - echo Im executing
@@ -345,8 +366,8 @@ pipelines:
             - echo 'i am onfailure'
           onComplete:
             - echo 'i am oncomplete'
-          
-  - name: Matrix_NodePool_Pipeline_Rutime
+  
+  - name: Matrix_Pipeline_Rutime_Step_Runtime_Steplet_runtime
     configuration:
       inputResources:
         - name: triggerMatrixRuntime
@@ -361,13 +382,59 @@ pipelines:
       - name: matrix_1
         type: Matrix
         configuration:
-          multiNode: true
+#           multiNode: true
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                - '17'
+        stepletMultipliers:
+          runtimes:
+            - type: image
+              image:
+                auto:
+                  language: node
+                  versions:
+                  - '16'
+          environmentVariables:
+            - name: test
+#           nodePools:
+#             - win_2019
+#             - u18dynamic
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+            
+  - name: Matrix_MultiNode_Pipeline_Rutime
+    configuration:
+      inputResources:
+        - name: triggerMatrixRuntime
+      runtime:
+        type: image
+        image:
+          auto:
+            language: node
+            versions:
+              - '15'
+    steps:
+      - name: matrix_1
+        type: Matrix
+        configuration:
+#           multiNode: true
         stepletMultipliers:
           environmentVariables:
             - name: test
-          nodePools:
-            - win_2019
-            - u18dynamic
+#           nodePools:
+#             - win_2019
+#             - u18dynamic
         execution:
           onExecute:
             - echo Im executing
