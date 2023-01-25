@@ -9,4 +9,4 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - sleep 10
+            - sleep 1m
