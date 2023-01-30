@@ -43,6 +43,9 @@ pipelines:
             
       - name: environment_variables_step2
         type: Bash
+        configuration:
+          inputSteps:
+            - name: environment_variables_step1
         execution:
           onExecute:
             - echo $TEST_ENV
