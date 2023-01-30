@@ -15,6 +15,49 @@ resources:
       runID: 1
       
 pipelines:
+
+  - name: environment_variables_pipelines
+    configuration:
+      environmentVariables:
+        readOnly:
+          TEST_ENV: "pipelines"
+          JUST_FES: "options"
+          LOL_FOO: "test"
+
+    steps:
+      - name: environment_variables_step1
+        type: Bash
+        configuration:
+          environmentVariables:
+            key1: "value1"
+            key2: "value2"
+            key3: "value3"
+        execution:
+          onExecute:
+            - echo $TEST_ENV
+            - echo $JUST_FES
+            - echo $LOL_FOO
+            - echo $key1
+            - echo $key2
+            - echo $key3
+            
+      - name: environment_variables_step2
+        type: Bash
+        execution:
+          onExecute:
+            - echo $TEST_ENV
+            - echo $JUST_FES
+            - echo $LOL_FOO   
+            
+  - name: environment_variables_pipelines
+    steps:
+            
+      - name: environment_variables_empty
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+            
   - name: RunHooksPipelineWithLogsAndTests
     configuration:
       environmentVariables:
