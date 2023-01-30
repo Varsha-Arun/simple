@@ -49,7 +49,7 @@ pipelines:
             - echo $JUST_FES
             - echo $LOL_FOO   
             
-  - name: environment_variables_pipelines
+  - name: pipelineWithOutEnvironment
     steps:
             
       - name: environment_variables_empty
