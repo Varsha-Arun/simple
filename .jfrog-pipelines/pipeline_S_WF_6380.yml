@@ -1,0 +1,135 @@
+pipelines:
+  - name: pipeline_S_WF_6380_005
+    steps:
+      - name: S_WF_6380_005_1
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+        execution:
+          onExecute:
+            - New-Item -Name "test_directory" -ItemType Directory
+            - Set-Content -Path "test_directory/my_file_1" -Value \${run_id}
+            - add_run_files test_directory test_directory
+            - add_run_variables step_one_id=\${step_id} step_one_stepletId=\${steplet_id}
+      - name: S_WF_6380_005_2
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputSteps:
+            - name: S_WF_6380_005_1
+        execution:
+          onExecute:
+            - New-Item -Name "test_directory" -ItemType Directory
+            - Set-Content -Path "test_directory/my_file_2" -Value \${run_id}
+            - add_run_files test_directory test_directory
+            - add_run_variables step_two_id=\${step_id} step_two_stepletId=\${steplet_id}
+      - name: S_WF_6380_005_3
+        type: PowerShell
+        configuration:
+          nodePool: win_2019
+          inputSteps:
+            - name: S_WF_6380_005_2
+          integrations:
+            - name: ${artifactoryProjectIntegration.name}
+        execution:
+          onExecute:
+            - Write-Output "\${step_one_id} \${step_two_id}"
+            - if ( -not \${step_one_id} ) { throw "First stepId not found" }
+            - if ( -not \${step_two_id} ) { throw "Second stepId not found" }
+            - if ( -not \${step_one_stepletId} ) { throw "First stepletId not found" }
+            - if ( -not \${step_two_stepletId} ) { throw "Second stepletId not found" }
+            - |
+              $stepletOneFilePath = (jfrog rt search "*/projects/\${project_id}/pipelines/*/runs/\${run_id}/steps/\${step_one_id}/state/\${step_one_stepletId}.tar.gz" | ConvertFrom-JSON)[0].path
+              if ( -not $stepletOneFilePath ) { throw "First steplet not found" }
+              jfrog rt download --insecure-tls=\${no_verify_ssl} --flat=true "$stepletOneFilePath" stepletOne.tar.gz
+            - |
+              $stepletTwoFilePath = (jfrog rt search "*/projects/\${project_id}/pipelines/*/runs/\${run_id}/steps/\${step_two_id}/state/\${step_two_stepletId}.tar.gz" | ConvertFrom-JSON)[0].path
+              if ( -not $stepletTwoFilePath ) { throw "Second steplet not found" }
+              jfrog rt download --insecure-tls=\${no_verify_ssl} --flat=true "$stepletTwoFilePath" stepletTwo.tar.gz
+            - mkdir stepletOne
+            - mkdir stepletTwo
+            - tar -xf stepletOne.tar.gz -C stepletOne
+            - tar -xf stepletTwo.tar.gz -C stepletTwo
+            - if ( -not (Test-Path stepletOne/test_directory/my_file_1) ) { throw "Missing file one" }
+            - if ( Test-Path stepletOne/test_directory/my_file_2 ) { throw "Found file two" }
+            - if ( -not (Test-Path stepletTwo/test_directory/my_file_2) ) { throw "Missing file two" }
+            - if ( Test-Path stepletTwo/test_directory/my_file_1 ) { throw "Found file one" } 
+            
+  - name: pipeline_S_WF_6380_002
+    steps:
+      - name: S_WF_6380_002_1
+        type: Bash
+        execution:
+          onExecute:
+            - mkdir test_directory
+            - echo \${run_id} > test_directory/my_file_1
+            - add_run_files test_directory test_directory
+            - add_run_variables step_one_id=\${step_id} step_one_stepletId=\${steplet_id}
+      - name: S_WF_6380_002_2
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_002_1
+        execution:
+          onExecute:
+            - mkdir test_directory
+            - echo \${run_id} > test_directory/my_file_2
+            - add_run_files test_directory test_directory
+            - add_run_variables step_two_id=\${step_id} step_two_stepletId=\${steplet_id}
+      - name: S_WF_6380_002_3
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: S_WF_6380_002_2
+          integrations:
+            - name: ${artifactoryProjectIntegration.name}
+        execution:
+          onExecute:
+            - if [ -z "$step_one_id" ]; then echo "First stepId not found"; return 1; fi
+            - if [ -z "$step_two_id" ]; then echo "Second stepId not found"; return 1; fi
+            - if [ -z "$step_one_stepletId" ]; then echo "First stepletId not found"; return 1; fi
+            - if [ -z "$step_two_stepletId" ]; then echo "Second stepletId not found"; return 1; fi
+            - echo "/projects/\${project_id}/pipelines/*/runs/\${run_id}/steps/\${step_one_id}/state/\${step_one_stepletId}.tar.gz"
+            - stepletOneFilePath=$(jfrog rt search "*/projects/\${project_id}/pipelines/*/runs/\${run_id}/steps/\${step_one_id}/state/\${step_one_stepletId}.tar.gz" | jq -r '.[0].path')
+            - stepletTwoFilePath=$(jfrog rt search "*/projects/\${project_id}/pipelines/*/runs/\${run_id}/steps/\${step_two_id}/state/\${step_two_stepletId}.tar.gz" | jq -r '.[0].path')
+            - if [ "$stepletOneFilePath" == "null" ]; then echo "First steplet not found"; return 1; fi
+            - if [ "$stepletTwoFilePath" == "null" ]; then echo "Second steplet not found"; return 1; fi
+            - jfrog rt download --insecure-tls=\${no_verify_ssl} --flat=true "$stepletOneFilePath" stepletOne.tar.gz
+            - jfrog rt download --insecure-tls=\${no_verify_ssl} --flat=true "$stepletTwoFilePath" stepletTwo.tar.gz
+            - ls
+            - mkdir stepletOne
+            - mkdir stepletTwo
+            - tar -xf stepletOne.tar.gz -C stepletOne
+            - tar -xf stepletTwo.tar.gz -C stepletTwo
+            - ls stepletOne
+            - ls stepletTwo
+            - if [ ! -f stepletOne/test_directory/my_file_1 ]; then return 1; fi
+            - if [ -f stepletOne/test_directory/my_file_2 ]; then return 1; fi
+            - if [ ! -f stepletTwo/test_directory/my_file_2 ]; then return 1; fi
+            - if [ -f stepletTwo/test_directory/my_file_1 ]; then return 1; fi
+            
+  - name: S_WF_007
+    configuration:
+      environmentVariables:
+        readOnly:
+          MY_MESSAGE: '"Hello World!"'
+    steps:
+      - name: S_WF_007_1
+        type: Bash
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo "step_1"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"      
+      - name: S_WF_007_2
+        type: Bash
+        configuration:
+          timeoutSeconds: 120
+          inputSteps:
+            - name: S_WF_007_1
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - sleep 180s
+            - echo "step_2"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
