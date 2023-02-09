@@ -30,7 +30,7 @@ pipelines:
           inputSteps:
             - name: S_WF_6380_005_2
           integrations:
-            - name: ${artifactoryProjectIntegration.name}
+            - name: s_artifactory
         execution:
           onExecute:
             - Write-Output "\${step_one_id} \${step_two_id}"
@@ -82,7 +82,7 @@ pipelines:
           inputSteps:
             - name: S_WF_6380_002_2
           integrations:
-            - name: ${artifactoryProjectIntegration.name}
+            - name: s_artifactory
         execution:
           onExecute:
             - if [ -z "$step_one_id" ]; then echo "First stepId not found"; return 1; fi
