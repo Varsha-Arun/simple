@@ -94,6 +94,7 @@ pipelines:
             key1: "value1"
             key2: "value2"
             key3: "value3"
+            JFROG_PIPELINES_RUN_STATE_DEBUG: "true"
           inputResources:
             - name: resource_A_Pipeinfo_gitRepo_v1
         execution:
