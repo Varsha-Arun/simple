@@ -1,0 +1,22 @@
+pipelines:
+  - name: approval_gate_creation_sample
+    configuration:
+      chronological: true
+    steps:
+      - name: approval_gate_creation
+        type: Bash
+        configuration:
+          requiresApproval:
+            approvers:
+              - member
+        execution:
+          onStart:
+            - >-
+              if [ -z "$BRANCH_NAME" ]; then echo "pass in a branch name"; exit 1;
+              fi
+            - >-
+              export BRANCH_LOWERCASE_NAME=$(echo ${BRANCH_NAME} | tr A-Z a-z | tr
+              "/" "-")
+            - echo $BRANCH_LOWERCASE_NAME
+          onExecute:
+            - printenv
