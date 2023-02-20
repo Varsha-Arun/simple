@@ -36,7 +36,7 @@ pipelines:
   - name: Trigger_Matrix_Tests_1
     steps:
       - name: trigger_test
-        type: Bash
+        type: Matrix
         stepletMultipliers:
           environmentVariables:
             - name: test
