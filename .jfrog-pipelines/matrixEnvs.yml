@@ -16,7 +16,9 @@ pipelines:
         stepletMultipliers:
           environmentVariables:
             - name: test
+              name2: test2
             - type: step
+              type2: step2
           nodePools:
             - win_2019
             - u18dynamic
@@ -35,6 +37,12 @@ pipelines:
     steps:
       - name: trigger_test
         type: Bash
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+              name2: test2
+            - type: step
+              type2: step2
         execution:
           onExecute:
             - echo Im executing
