@@ -1,0 +1,70 @@
+pipelines:
+  - name: Matrix_NodePool_Pipeline_Rutime_Test
+    configuration:
+      runtime:
+        type: image
+        image:
+          auto:
+            language: node
+            versions:
+              - '16'
+    steps:
+      - name: matrix_1test
+        type: Matrix
+        configuration:
+          multiNode: true
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+            - type: step
+          nodePools:
+            - win_2019
+            - u18dynamic
+            - testu18
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+            
+  - name: Trigger_Matrix_Tests_1
+    steps:
+      - name: trigger_test
+        type: Bash
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+            - write_output triggerMatrixRuntime trigger=$run_id
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+        
+  - name: Matrix_Step_Type_Host_2
+    steps:
+      - name: matrix_1io
+        type: Matrix
+        configuration:
+          multiNode: true
+          runtime:
+            type: host
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+            - test1: env1
+            - test2: env2
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
