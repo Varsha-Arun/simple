@@ -281,8 +281,15 @@ pipelines:
                 language: node
                 versions:
                   - '17'
+          - type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '15'
           environmentVariables:
             - name: test
+            - test: hello
         execution:
           onExecute:
             - echo Im executing
