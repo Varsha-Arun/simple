@@ -281,6 +281,7 @@ pipelines:
                 language: java
                 versions:
                   - '11'
+                  - '13'
           - type: image
             image:
               auto:
