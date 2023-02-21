@@ -4,6 +4,7 @@ resources:
     configuration:
       key: value
 
+pipelines:
   - name: lightweightmatrix
     configuration:
       inputResources:
@@ -34,7 +35,7 @@ resources:
           onExecute:
             - echo Im executing
               
-pipelines:
+
   - name: Matrix_NodePool_Pipeline_Rutime
     configuration:
       inputResources:
