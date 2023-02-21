@@ -17,7 +17,7 @@ pipelines:
             versions:
               - '16'
     steps:
-      - name: matrix_1
+      - name: lightweightStep
         type: Matrix
         configuration:
           multiNode: true
@@ -31,6 +31,19 @@ pipelines:
                               core/resources/Bash/*.js,\
                               core/steps/Bash/BashUtilityFunctions/*.js"
               repositoryFullName:    "jfbetapipeorg/Org_test_Automation_bash"
+            - listOfTests:    "core/steps/PowerShell/PSGeneric/Sync/*.js,\
+                              core/steps/PowerShell/PSGeneric/Trigger/*.js,\
+                              core/steps/PowerShell/PSIntegration/*.js,\
+                              core/steps/PowerShell/PSLanguages/*.js,\
+                              core/steps/PowerShell/PSNative/*.js,\
+                              core/steps/PowerShell/PSResources/*.js,\
+                              core/steps/PowerShell/PSUtilityfunctions/*.js"
+              repositoryFullName:    "jfbetapipeorg/Org_test_Automation_Powershell"
+            - listOfTests:    "core/multibranch/pipelines/*.js,\
+                              core/multibranch/resources/*.js,\
+                              core/multibranch/pipelineSyncStatuses/*.js"
+              repositoryFullName:    "jfbetapipeorg/org_test_automation_MultiBranch"
+            - listOfTests: "core/steps/Matrix/*.js"
         execution:
           onExecute:
             - echo Im executing
