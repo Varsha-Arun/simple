@@ -67,6 +67,30 @@ pipelines:
             - name: test
             - test1: env1
             - test2: env2
+          
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
+
+  - name: Matrix_nodepool_and_env
+    steps:
+      - name: matrix_nodepool_and_env
+        type: Matrix
+        configuration:
+          multiNode: true
+#           runtime:
+#             type: host
+        stepletMultipliers:
+          environmentVariables:
+            - name: test
+            - test1: env1
+            - test2: env2
           nodePools:
             - win_2019
             - u18dynamic
@@ -81,9 +105,9 @@ pipelines:
           onComplete:
             - echo 'i am oncomplete'
 
-  - name: Matrix_nodepool_and_env
+  - name: Matrix_nodepool
     steps:
-      - name: matrix_1io
+      - name: matrix_nodepool_and_env
         type: Matrix
         configuration:
           multiNode: true
@@ -94,6 +118,10 @@ pipelines:
             - name: test
             - test1: env1
             - test2: env2
+          nodePools:
+            - win_2019
+            - u18dynamic
+            - testu18
         execution:
           onExecute:
             - echo Im executing
