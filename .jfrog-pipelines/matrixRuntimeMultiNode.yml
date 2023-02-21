@@ -278,9 +278,9 @@ pipelines:
           - type: image
             image:
               auto:
-                language: node
+                language: java
                 versions:
-                  - '17'
+                  - '11'
           - type: image
             image:
               auto:
