@@ -19,10 +19,11 @@ pipelines:
   - name: pipelineReadOnly
     configuration:
       environmentVariables:
-        TEST_ENV: "pipelines"
-        JUST_FES: "options"
-        LOL_FOO: "test"
-
+        readOnly: 
+          TEST_ENV: "pipelines"
+          allowCustom: true
+          JUST_FES: "options"
+          LOL_FOO: "test"
     steps:
       - name: pipelineReadOnlyStep
         type: Bash
