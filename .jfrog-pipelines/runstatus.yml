@@ -15,8 +15,6 @@ pipelines:
           condition: 'key == value'
           inputSteps:
             - name: step1cv
-              status:
-                - success
         execution:
           onExecute:
             - echo "executing step..."
