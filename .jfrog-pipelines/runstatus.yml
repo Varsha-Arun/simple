@@ -18,6 +18,7 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
+            - echo $key
             - sleep 10
             
   - name: pipelineInputStatus
