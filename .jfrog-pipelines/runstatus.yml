@@ -42,7 +42,7 @@ pipelines:
             - echo "executing step..."
             - sleep 10
 
-- name: pipelineNewVersionOnly
+  - name: pipelineNewVersionOnly
     steps:
       - name: step1nvo
         type: Bash
