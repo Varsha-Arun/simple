@@ -8,6 +8,7 @@ pipelines:
             - echo "executing step..."
             - sleep 10
             - exit 1
+
   
       - name: step2test
         type: Bash
@@ -21,12 +22,36 @@ pipelines:
             - echo "executing step..."
             - sleep 10
             
-#       - name: step3test
-#         type: Bash
-#         configuration:
+      - name: step3test
+        type: Bash
+        coniguration:
+          outputResources:
+            - name: runStatusResource
+          inputSteps:
+            - name: step2test
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+            - exit 1
+            
+      - name: step4test
+        type: Bash
+        coniguration:
+          inputResources:
+            - name: runStatusResource
+              newVersionOnly: true
+
 #           inputSteps:
 #             - name: step2test
-#         execution:
-#           onExecute:
-#             - echo "executing step..."
-#             - sleep 10
+#               status:
+#                 - success
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+resources:
+  - name: runStatusResource
+    type: PropertyBag
+    configuration:
+      test: test
