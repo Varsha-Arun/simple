@@ -24,7 +24,7 @@ pipelines:
             
       - name: step3test
         type: Bash
-        coniguration:
+        configuration:
           outputResources:
             - name: runStatusResource
           inputSteps:
@@ -37,7 +37,7 @@ pipelines:
             
       - name: step4test
         type: Bash
-        coniguration:
+        configuration:
           inputResources:
             - name: runStatusResource
               newVersionOnly: true
