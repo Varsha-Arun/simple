@@ -1,0 +1,29 @@
+pipelines:
+  - name: pipelineRunState
+    steps:
+      - name: step1test
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+            
+      - name: step2test
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step1test
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+            
+#       - name: step3test
+#         type: Bash
+#         configuration:
+#           inputSteps:
+#             - name: step2test
+#         execution:
+#           onExecute:
+#             - echo "executing step..."
+#             - sleep 10
