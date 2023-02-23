@@ -7,11 +7,12 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - sleep 1m
+            - add_run_variables 'key=test'
 
       - name: step2cv
         type: Bash
         configuration:
+          condition: 'key == value'
           inputSteps:
             - name: step1cv
               status:
