@@ -1,20 +1,19 @@
 pipelines:
-  - name: pipelineRunState
+
+  - name: pipelineConditionalVariable
     steps:
-      - name: step1test
+      - name: step1cv
         type: Bash
         execution:
           onExecute:
             - echo "executing step..."
-            - sleep 10
-            - exit 1
+            - sleep 1m
 
-  
-      - name: step2test
+      - name: step2cv
         type: Bash
         configuration:
           inputSteps:
-            - name: step1test
+            - name: step1cv
               status:
                 - success
         execution:
@@ -22,30 +21,46 @@ pipelines:
             - echo "executing step..."
             - sleep 10
             
-      - name: step3test
+  - name: pipelineInputStatus
+    steps:
+      - name: step1is
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 1m
+
+      - name: step2is
         type: Bash
         configuration:
-          outputResources:
-            - name: runStatusResource
           inputSteps:
-            - name: step2test
+            - name: step1is
+              status:
+                - success
         execution:
           onExecute:
             - echo "executing step..."
             - sleep 10
-#             - exit 1
+
+- name: pipelineNewVersionOnly
+    steps:
+      - name: step1nvo
+        type: Bash
+        configuration:
+          outputResources:
+            - name: runStatusResource
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - sleep 10
+#             - exit 199
             
-      - name: step4test
+      - name: step2nvo
         type: Bash
         configuration:
           inputResources:
             - name: runStatusResource
               newVersionOnly: true
-
-#           inputSteps:
-#             - name: step2test
-#               status:
-#                 - success
         execution:
           onExecute:
             - echo "executing step..."
