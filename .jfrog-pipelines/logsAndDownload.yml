@@ -21,7 +21,6 @@ pipelines:
       environmentVariables:
         readOnly: 
           TEST_ENV: "pipelines"
-          allowCustom: true
           JUST_FES: "options"
           LOL_FOO: "test"
     steps:
