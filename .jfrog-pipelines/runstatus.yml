@@ -87,7 +87,7 @@ pipelines:
           inputSteps:
             - name: step1is
               status:
-                - success
+                - failure
         execution:
           onExecute:
             - echo "executing step..."
