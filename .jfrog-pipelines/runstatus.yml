@@ -7,7 +7,7 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - add_run_variables 'key=test'
+            - add_run_variables "key=test"
 
       - name: step2cv
         type: Bash
