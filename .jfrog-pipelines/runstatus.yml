@@ -30,7 +30,7 @@ pipelines:
         execution:
           onExecute:
             - echo $MY_MESSAGE
-            - sleep 6s
+            - sleep 60s
             - echo "step_1"
             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
             
@@ -55,7 +55,7 @@ pipelines:
           timeoutSeconds: 1
         execution:
           onExecute:
-            - echo $MY_MESSAGE
+            - echo $0
             - sleep 6s
             - echo "step_1"
             - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
