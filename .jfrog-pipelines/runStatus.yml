@@ -10,7 +10,7 @@ pipelines:
       - name: step2
         type: Bash
         configuration:
-          condition: 'var1 == 1' // Any logical boolean expression that results to a boolean
+          condition: 'var1 == 1'
           inputSteps:
             - name: step1
         execution:
