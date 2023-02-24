@@ -14,7 +14,7 @@ pipelines:
       - name: step2cvtest
         type: Bash
         configuration:
-          condition: 'key = "1"'
+          condition: 'key == 1'
           inputSteps:
             - name: step1cvtest
         execution:
