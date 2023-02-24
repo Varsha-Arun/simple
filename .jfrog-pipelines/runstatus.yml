@@ -85,8 +85,8 @@ pipelines:
         configuration:
           inputSteps:
             - name: step1is
-              status:
-                - cancelled
+#               status:
+#                 - cancelled
         execution:
           onExecute:
             - echo "executing step..."
