@@ -1,123 +1,24 @@
 pipelines:
 
-  - name: pipelineConditionalVariable
+  - name: pipelineConditionalVariabletest
     steps:
-      - name: step1cv
+      - name: step1cvtest
         type: Bash
         execution:
           onExecute:
             - echo "executing step..."
             - add_run_variables "key=test"
 
-      - name: step2cv
+      - name: step2cvtest
         type: Bash
         configuration:
           condition: 'key == "test"'
           inputSteps:
-            - name: step1cv
+            - name: step1cvtest
         execution:
           onExecute:
             - echo "executing step..."
             - echo $key
             - sleep 10
     
-  - name: pipelinetimeoutAllowStatusCancelled    
-    steps:
-      - name: step1toAllowStatusCancelled
-        type: Bash
-        configuration:
-          timeoutSeconds: 1
-        execution:
-          onExecute:
-            - echo $MY_MESSAGE
-            - sleep 120s
-            - echo "step_1"
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
-            
-      - name: step2toAllowStatusCancelled 
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step1toAllowStatusCancelled
-              status:
-                - cancelled
-        execution:
-          onExecute:
-            - echo $MY_MESSAGE
-            - echo "step_2"
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
-            
-  - name: pipelinetimeout    
-    steps:
-      - name: step1to
-        type: Bash
-        configuration:
-          timeoutSeconds: 1
-        execution:
-          onExecute:
-            - echo $0
-            - sleep 120s
-            - echo "step_1"
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
-      - name: step2to
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step1to
-              status:
-                - success
-        execution:
-          onExecute:
-            - echo $MY_MESSAGE
-            - echo "step_2"
-            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
-            
-  - name: pipelineInputStatus
-    steps:
-      - name: step1is
-        type: Bash
-        execution:
-          onExecute:
-            - echo "executing step..."
-            - exit 199
-
-      - name: step2is
-        type: Bash
-        configuration:
-          inputSteps:
-            - name: step1is
-              status:
-                - failure
-        execution:
-          onExecute:
-            - echo "executing step..."
-            - sleep 10
-
-  - name: pipelineNewVersionOnly
-    steps:
-      - name: step1nvo
-        type: Bash
-        configuration:
-          outputResources:
-            - name: runStatusResource
-        execution:
-          onExecute:
-            - echo "executing step..."
-            - sleep 10
-#             - exit 199
-            
-      - name: step2nvo
-        type: Bash
-        configuration:
-          inputResources:
-            - name: runStatusResource
-              newVersionOnly: true
-        execution:
-          onExecute:
-            - echo "executing step..."
-            - sleep 10
-resources:
-  - name: runStatusResource
-    type: PropertyBag
-    configuration:
-      test: test
+  
