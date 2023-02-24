@@ -1,0 +1,24 @@
+
+
+pipelines:
+
+  - name: pipelineConditionalVariabletest
+    steps:
+      - name: step1cvtest
+        type: Bash
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - add_run_variables "key=test"
+
+      - name: step2cvtest
+        type: Bash
+        configuration:
+          condition: 'key == "test"'
+          inputSteps:
+            - name: step1cvtest
+        execution:
+          onExecute:
+            - echo "executing step..."
+            - echo $key
+            - sleep 10
