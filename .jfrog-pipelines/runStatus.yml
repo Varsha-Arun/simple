@@ -1,24 +1,18 @@
-
-
 pipelines:
-
-  - name: pipelineConditionalVariabletest
+  - name: Example
     steps:
-      - name: step1cvtest
+      - name: step1
         type: Bash
         execution:
           onExecute:
-            - echo "executing step..."
-            - add_run_variables "key=1"
-
-      - name: step2cvtest
+            - echo 'step1'
+            - add_run_variables 'var1=1'
+      - name: step2
         type: Bash
         configuration:
-          condition: 'key == 1'
+          condition: 'var1 == 1' // Any logical boolean expression that results to a boolean
           inputSteps:
-            - name: step1cvtest
+            - name: step1
         execution:
           onExecute:
-            - echo "executing step..."
-            - echo $key
-            - sleep 10
+            - echo 'success'
