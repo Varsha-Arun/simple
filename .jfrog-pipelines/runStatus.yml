@@ -10,7 +10,7 @@ pipelines:
       - name: step2
         type: Bash
         configuration:
-          condition: 'var1 == 1'
+          condition: 'var1 == 2'
           inputSteps:
             - name: step1
         execution:
