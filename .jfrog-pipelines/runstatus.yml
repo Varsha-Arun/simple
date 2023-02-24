@@ -21,6 +21,29 @@ pipelines:
             - echo $key
             - sleep 10
             
+  - name: pipelinetimeout    
+    steps:
+      - name: step1to
+        type: Bash
+        configuration:
+          timeoutSeconds: 1
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - sleep 6s
+            - echo "step_1"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
+      - name: step2to
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: step1to
+        execution:
+          onExecute:
+            - echo $MY_MESSAGE
+            - echo "step_2"
+            - echo "Running $pipeline_name | $step_name on node ID $step_node_id"
+            
   - name: pipelineInputStatus
     steps:
       - name: step1is
