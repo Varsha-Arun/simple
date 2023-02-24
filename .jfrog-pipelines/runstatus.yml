@@ -12,7 +12,7 @@ pipelines:
       - name: step2cv
         type: Bash
         configuration:
-          condition: key == "test"
+          condition: 'key == "test"'
           inputSteps:
             - name: step1cv
         execution:
