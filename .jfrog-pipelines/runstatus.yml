@@ -79,6 +79,7 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
+            - exit 1
 
       - name: step2is
         type: Bash
