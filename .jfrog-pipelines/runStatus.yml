@@ -9,12 +9,12 @@ pipelines:
         execution:
           onExecute:
             - echo "executing step..."
-            - add_run_variables "key=test"
+            - add_run_variables "key=1"
 
       - name: step2cvtest
         type: Bash
         configuration:
-          condition: 'key == "test"'
+          condition: 'key = "1"'
           inputSteps:
             - name: step1cvtest
         execution:
