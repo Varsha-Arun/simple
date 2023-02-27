@@ -31,6 +31,7 @@ pipelines:
             - echo $key1
             - echo $key2
             - echo $key3
+            - exit 1
             
     postRun:
       configuration:
@@ -40,6 +41,6 @@ pipelines:
         onExecute:
           - echo "Executing Pre Run"
           - echo "new"
-          - echo 
+          - echo ${int_test_ssh_publicKey}
           - set_run_name 'post run name'
           - update_run_description 'test post run desc'
