@@ -31,7 +31,7 @@ pipelines:
           condition: 'var1 == 2'
           inputSteps:
             - name: step1af
-              allowedStatus: failure
+              status: failure
         execution:
           onExecute:
             - echo 'success'
@@ -50,7 +50,7 @@ pipelines:
           condition: 'var1 == 2'
           inputSteps:
             - name: step1ac
-              allowedStatus: failure
+              status: failure
         execution:
           onExecute:
             - echo 'success'
