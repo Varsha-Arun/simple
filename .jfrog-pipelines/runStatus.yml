@@ -35,23 +35,4 @@ pipelines:
         execution:
           onExecute:
             - echo 'success'
-            
-            
-#   - name: allowedCancelledStepStatusPipeline
-#     steps:
-#       - name: step1ac
-#         type: Bash
-#         execution:
-#           onExecute:
-#             - printenv
-#       - name: step2ac
-#         type: Bash
-#         configuration:
-#           condition: 'var1 == 2'
-#           inputSteps:
-#             - name: step1ac
-#               status: 
-#                 - cancelled
-#         execution:
-#           onExecute:
-#             - echo 'success'
+  
