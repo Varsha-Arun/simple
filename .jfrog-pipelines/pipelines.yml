@@ -1,0 +1,82 @@
+pipelines:           
+  - name: PostRunHooksPipeline
+    configuration:
+      environmentVariables:
+        readOnly:
+          TEST_ENV: "pipelines"
+          JUST_FES: "options"
+          LOL_FOO: "test"
+    preRun:
+      execution:
+        onExecute:
+          - printenv
+          - echo "Executing Pre Run"
+          - echo "new"
+          - set_run_name 'pre run name'
+          - update_run_description 'pre run desc'
+          
+    steps:
+      - name: stepInBetweenPreAndPostRun
+        type: Bash
+        configuration:
+          environmentVariables:
+            key1: "value1"
+            key2: "value2"
+            key3: "value3"
+        execution:
+          onExecute:
+            - echo $TEST_ENV
+            - echo $JUST_FES
+            - echo $LOL_FOO
+            - echo $key1
+            - echo $key2
+            - echo $key3
+            
+      - name: step2InBetweenPreAndPostRun
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: stepInBetweenPreAndPostRun
+          environmentVariables:
+            key1: "value1"
+            key2: "value2"
+            key3: "value3"
+        execution:
+          onExecute:
+            - echo $TEST_ENV
+            - echo $JUST_FES
+            - echo $LOL_FOO
+            - echo $key1
+            - echo $key2
+            - echo $key3
+                        
+      - name: step3InBetweenPreAndPostRun
+        type: Bash
+        configuration:
+          inputSteps:
+            - name: stepInBetweenPreAndPostRun
+          environmentVariables:
+            key1: "value1"
+            key2: "value2"
+            key3: "value3"
+        execution:
+          onExecute:
+            - echo $TEST_ENV
+            - echo $JUST_FES
+            - echo $LOL_FOO
+            - echo $key1
+            - echo $key2
+            - echo $key3
+            - exit 1
+            
+    postRun:
+      configuration:
+        integrations:
+          - name: test_ssh
+      execution:
+        onExecute:
+          - echo "Executing Pre Run"
+          - echo "new"
+          - echo ${int_test_ssh_publicKey}
+          - set_run_name 'post run name'
+          - update_run_description 'test post run desc'
