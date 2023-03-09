@@ -1,18 +1,56 @@
 pipelines:
-  - name: Example
+
+  - name: conditionalValuePipeline
     steps:
-      - name: step1
+      - name: step1cv
         type: Bash
         execution:
           onExecute:
-            - echo 'step1'
             - add_run_variables 'var1=1'
-      - name: step2
+      - name: step2cv
         type: Bash
         configuration:
           condition: 'var1 == 2'
           inputSteps:
-            - name: step1
+            - name: step1cv
+        execution:
+          onExecute:
+            - echo 'success'
+
+
+  - name: allowedFailureStepStatusPipleine
+    steps:
+      - name: step1af
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+      - name: step2af
+        type: Bash
+        configuration:
+          condition: 'var1 == 2'
+          inputSteps:
+            - name: step1af
+              allowedStatus: failure
+        execution:
+          onExecute:
+            - echo 'success'
+            
+            
+  - name: allowedCancelledStepStatusPipeline
+    steps:
+      - name: step1ac
+        type: Bash
+        execution:
+          onExecute:
+            - printenv
+      - name: step2ac
+        type: Bash
+        configuration:
+          condition: 'var1 == 2'
+          inputSteps:
+            - name: step1ac
+              allowedStatus: failure
         execution:
           onExecute:
             - echo 'success'
