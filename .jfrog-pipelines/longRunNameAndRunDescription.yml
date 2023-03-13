@@ -8,15 +8,13 @@ pipelines:
           JUST_FES: "options"
           LOL_FOO: "test"
     steps:
-      - name: s_stepTestReports_v1
+      - name: runNameAndRunDescriptionStep
         type: Bash
         configuration:
           environmentVariables:
             key1: "value1"
             key2: "value2"
             key3: "value3"
-          inputResources:
-            - name: resource_A_Pipeinfo_gitRepo_v1
         execution:
           onExecute:
             - printenv
