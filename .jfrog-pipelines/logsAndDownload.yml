@@ -134,6 +134,7 @@ pipelines:
             - py.test --verbose --junit-xml test-reports/results.xml tests/core/sampleExecutionFile/test_calc.py
             - save_tests $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath/test-reports/results.xml
             - restore_run_files my_files tests/core/sampleExecutionFile/calc.py
+            - add_run_variables step_one_id=\${step_id} step_one_stepletId=\${steplet_id} JFROG_PIPELINES_RUN_STATE_DEBUG=true
             
       - name: s_stepArtifacts_001_v1
         type: Bash
@@ -182,6 +183,7 @@ pipelines:
 #             - update_run_description 'testRunDescription'
             - echo $current_runid
             - add_pipeline_variables prev_runid=$run_id
+            - add_run_variables step_one_id=\${step_id} step_one_stepletId=\${steplet_id} JFROG_PIPELINES_RUN_STATE_DEBUG=true
             - write_output resource_A_stepArtifact_propertyBag_v1 commitSha=$commitSha runID=$current_runid
             - set_run_name 'test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_test_run_name_too_long_'
             - update_run_description 'test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_test_run_description_too_long_'
