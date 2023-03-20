@@ -1,9 +1,9 @@
 pipelines:
-  - name: approval_gate_creation_sample
+  - name: approval_gate_creation_sample_test
     configuration:
       chronological: true
     steps:
-      - name: approval_gate_creation
+      - name: approval_gate_creation_test
         type: Bash
         configuration:
           requiresApproval:
