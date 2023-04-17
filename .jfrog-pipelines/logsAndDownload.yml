@@ -126,7 +126,8 @@ pipelines:
             - cd $res_resource_A_Pipeinfo_gitRepo_v1_resourcePath
             - add_run_files tests/core/sampleExecutionFile/calc.py my_files 
             - add_run_variables JFROG_PIPELINES_RUN_STATE_DEBUG=true
-       name: RunHooksPipelineWithLogsAndTest
+            
+  - name: RunHooksPipelineWithLogsAndTest
     configuration:
       environmentVariables:
         readOnly:
