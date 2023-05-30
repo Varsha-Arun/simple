@@ -1,0 +1,444 @@
+pipelines:
+  - name: api_testsSampleTest1
+    configuration:
+      environmentVariables:
+        readOnly:
+          #set this env to true to delete the conf.json file
+          removeConfFile: "false"
+          confFileName: conf.json
+          exitCode: "1"
+          LOG_LEVEL: "info"
+          JFROG_ARTIFACTORY_USER:
+            allowCustom: true
+            default: "test"
+            description: "Username of the instance against which you want to trigger smoke test suite"
+          JFROG_ADMIN_ARTIFACTORY_PASSWORD:
+            allowCustom: true
+            default: "Password@1"
+            description: "Password of the instance against which you want to trigger smoke test suite"
+          JFROG_ARTIFACTORY_APIKEY:
+            allowCustom: true
+            default: "Password@1"
+            description: "Add password of the instance against which you want to trigger smoke test suite"
+          GITHUB_TOKEN:
+            allowCustom: true
+            default: "test"
+            description: "GitHub token for the test automation yaml repository"
+          GITHUB_URL: "test"
+          gitUser: "jfbetapipeorg"
+          NUMBER_OF_NODES_IN_NODEPOOL:
+            description: "Number of nodes that need to present in the node pool"
+            default: 200
+            allowCustom: true
+          # LOCAL_STATE_FILE_PATH: "/tmp/$steplet_number"
+          DEFAULT_UBUNTU_NODEPOOL_OS:
+            allowCustom: true
+            default: "Ubuntu_18.04"
+            description: "Default operating system for node pool tests"
+          DEFAULT_NODEPOOL_NUMBEROFNODES:
+            allowCustom: true
+            default: 200
+            description: "Default number of nodes for node pool tests"
+          DEFAULT_NODEPOOL_REGION:
+            allowCustom: true
+            default: "ap-south-1"
+            description: "Default region for node pool tests"
+          DEFAULT_AZURE_NODEPOOL_REGION:
+            allowCustom: true
+            default: "westus"
+            description: "Default region for azure node pool tests"
+          DEFAULT_GCP_NODEPOOL_REGION:
+            allowCustom: true
+            default: "us-west1"
+            description: "Default region for gcp node pool tests"
+          DEFAULT_NODEPOOL_ARCHITECTURE:
+            allowCustom: true
+            default: "x86_64"
+            description: "Default architecture for node pool tests"
+          DEFAULT_NODEPOOL_NODEIDLEINTERVAL:
+            allowCustom: true
+            default: 1
+            description: "Default node interval(in min) for node pool tests"
+          DEFAULT_NODEPOOL_DISKSIZE:
+            allowCustom: true
+            default: 90
+            description: "Default disk size for node pool tests"
+          DEFAULT_NODEPOOL_TIMEOUT:
+            allowCustom: true
+            default: 30000
+            description: "Default timeout(in sec) for node pool tests"
+          DEFAULT_WINDOWS_NODEPOOL_OS:
+            allowCustom: true
+            default: "WindowsServer_2019"
+          AWS_NODEPOOL_KEYPAIRNAME:
+            description: "AWS key-pair"
+            default: "dev2cloud-pp-aps1-nodepool"
+            allowCustom: true
+          AWS_NODEPOOL_SECOND_KEYPAIRNAME:
+            description: "AWS second key-pair"
+            default: "pipetesting003-eu-central-1"
+            allowCustom: true
+          AWS_NODEPOOL_SUBNETID:
+            description: "Default AWS subnet-id"
+            default: "subnet-0cdfebd1890e2967a"
+            allowCustom: true
+          AWS_NODEPOOL_SECOND_SUBNETID:
+            description: "second AWS subnet-id"
+            default: "subnet-050a07ea2f5cbee1c"
+            allowCustom: true
+          AWS_NODEPOOL_INSTANCESIZE:
+            description: "Default AWS instance-size"
+            default: "c4.large"
+            allowCustom: true
+          AWS_NODEPOOL_WIN_19_INSTANCESIZE:
+            description: "Default AWS instance-size"
+            default: "c4.large"
+            allowCustom: true
+          AWS_NODEPOOL_SECURITYGROUPID:
+            description: " Default AWS security group-id"
+            default: "sg-04d78bcf2e81c95a0"
+            allowCustom: true
+          AWS_NODEPOOL_SECOND_SECURITYGROUPID:
+            description: " second AWS security group-id"
+            default: "sg-0ea095851df05843e"
+            allowCustom: true
+          AWS_PROJECT_INTEGRATION_ACCESSKEYID:
+            description: "Default AWS access key-id"
+            default: "test"
+            values:
+              - "test1"
+              - "test2"
+            allowCustom: true
+          AWS_PROJECT_INTEGRATION_SECRETACCESSKEY:
+            description: "Default AWS ecret access-key"
+            default: tets
+            values:
+              - "test"
+              - "test"
+            allowCustom: true
+          D_AZUREKEYS_PROJECT_INTEGRATION_APPID:
+            description: "Default Azure app-id"
+            default: "192757c5-73a6-4257-84ec-1fe4c30f98fb"
+            allowCustom: true
+          D_AZUREKEYS_PROJECT_INTEGRATION_PASSWORD:
+            description: "Default Azure password"
+            default: "test"
+            allowCustom: true
+          D_AZUREKEYS_PROJECT_INTEGRATION_TENANT:
+            description: "Default Azure tenant key"
+            default: "ad8b5a8c-9862-4c41-a341-aa838fc564df"
+            allowCustom: true
+          AZURE_NODEPOOL_SUBSCRIPTIONID:
+            allowCustom: true
+            default: "f27d81be-eea4-479e-a745-11088b8cc1b0"
+            description: "Default Azure subscription-id"
+          AZURE_NODEPOOL_RESOURCEGROUPNAME:
+            allowCustom: true
+            default: "pipelines-bp-westus"
+            description: "Default Azure resource group name"
+          AZURE_NODEPOOL_VNETNAME:
+            allowCustom: true
+            default: "pipelines-bp-westus"
+            description: "Default Azure vnetname"
+          AZURE_NODEPOOL_SUBNETNAME:
+            allowCustom: true
+            default: "pipelines-bp-westus"
+            description: "Default Azure subnet name"
+          AZURE_NODEPOOL_PUBLICSSHKEY:
+            allowCustom: true
+            default: "\"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCA0GPIdWfyEn21jkMhS8/JvoJ4viuPmnBhuazjwUbilM3zO38hQc8nr8eW0zJS/zpf2V9QewpJ1t9x5tw4bdTRMN99aaIbqr6ZSz/1ofFL1PkpC9Y7HWi+dmpxlIqRkX6JGPaUNb2ql71vVPY0tLg2G4MgcX/ZFQCVO3z/o20HURgrcxYEu5A3+dOkyiE3JQBi+s66cgDm7p3IIND2eEHcZiIsaW6vg2T85oF8WkXcpHFLLXt5gzND6f/8TwW657QXe2P5mijWwTtCOaopfSK0vXC1dFzPPpwKGPTv7KrsTSPL3c/QP6YqEYratKpNTenmvGPGqYNFgj8oMIbVN2SP\""
+            description: "Default Azure public ssh-key"
+          AZURE_NODEPOOL_INSTANCESIZE:
+            allowCustom: true
+            default: "Standard_F2s"
+            description: "Default Azure instance size"
+          GCP_NODEPOOL_INSTANCESIZE:
+            allowCustom: true
+            default: "n1-standard-2"
+            description: "This variable is used to set default instance size for azure node pool"
+          GCP_NODEPOOL_SUBNET:
+            allowCustom: true
+            default: "jfrog-usw1-dynamicnodes"
+            description: "This variable is used to set default instance size for azure node pool"
+          GCP_NODEPOOL_NETWORK_TAGS:
+            allowCustom: true
+            default: "behind-nat,jenkins,pipelines,xray-app,xray-apps"
+            description: "This variable is used to set default instance size for azure node pool"
+          GCP_NODEPOOL_ZONE:
+            allowCustom: true
+            default: "uswest1b"
+            description: "This variable is used to set default instance size for azure node pool"
+          D_GOOGLECLOUD_PROJECT_INTEGRATION_JSONKEY:
+            allowCustom: true
+            default: "test"
+            description: "This variable is used to set default instance size for azure node pool"
+          KUBERNETES_NODEPOOL_STORAGECLASS:
+            allowCustom: true
+            default: "standard"
+            description: "This variable is used to set default storage class for kubernetes node pool"
+          KUBERNETES_NODEPOOL_NAMESPACE:
+            allowCustom: true
+            default: "pipemasterpool"
+            description: "This variable is used to set default namespace for kubernetes node pool"
+          KUBERNETES_PROJECT_INTEGRATION_KUBECONFIG:
+            allowCustom: true
+            default: "test"
+            description: "This variable is used to set default kubeconfig for kubernetes node pool"
+          KUBERNETES_PROJECT_INTEGRATION_KUBECONFIG_PATH: "test"
+          DONT_DELETE_PS:
+            description: "When run status reaches error status, pipeline source doesn't get deleted "
+            default: "false"
+            allowCustom: true
+          DEFAULT_NODE_POOL_NAME:
+            allowCustom: true
+            default: u18dynamic
+            description: "Default nodePool"
+          PREP_FOR_HELM_TESTS:
+            description: "Upload helm test files to artifactory for running helm test cases"
+            default: "false"
+            allowCustom: true
+          U18_STATIC_IP_ADDRESS:
+            allowCustom: false
+            default:  "test"
+            description: "Ubuntu 18 static vm ip address"
+          U20_STATIC_IP_ADDRESS:
+            allowCustom: false
+            default:  "test"
+            description: "Ubuntu 20 static vm ip address"
+          RHEL7_STATIC_IP_ADDRESS:
+            allowCustom: false
+            default:  "test"
+            description: "Redhat 7 static vm ip address"
+          CENT7_STATIC_IP_ADDRESS:
+            allowCustom: false
+            default:  "test"
+            description: "CentOS 7 static vm ip address"
+          SSH_USER:
+            allowCustom: false
+            default:  "automation"
+            description: "SSH user name in automation"
+          SSH_PRIVATE_KEY:
+            allowCustom: false
+            default:  "test"
+            description: "SSH private key value in automation"
+          GITHUB_WEBHOOKS_REPOSITORY_FULL_NAME: "test"
+          BITBUCKET_WEBHOOKS_REPOSITORY_FULL_NAME: "test"
+          BITBUCKETSERVERBASIC_WEBHOOKS_REPOSITORY_FULL_NAME: "PIP"
+          GITLAB_WEBHOOKS_REPOSITORY_FULL_NAME: "jfbeta"
+          PIPELINES_SERVICE_USER_TOKEN:  "Testing1234"
+          DEPLOY_KEYS_REPOSITORY_FULL_NAME: "test"
+          AWS_NODEPOOL_CUSTOMTAG_KEYS: "test"
+          AWS_NODEPOOL_CUSTOMTAG_VALUES: "test"
+      integrations:
+        - name: varsha_github
+
+    steps:
+      - name: setup_prematrixTest1
+        type: PreMatrix
+        configuration:
+          environmentVariables:
+            SKIP_GLOBAL_TEARDOWN: "true"
+            SKIP_NPM_INSTALL: "false"
+            JPD_URL:
+              allowCustom: true
+              default:  "https://apimaster.jfrogdev.org"
+              description: "URL of the intance against which you want to trigger api test suite"
+            JFROG_JOIN_KEY:
+              allowCustom: true
+              default: "123456789"
+              description: "Join-key of the instance against which you want to trigger api test suite"
+            PASSWORD:
+              allowCustom: true
+              default: "Password@1"
+              description: "Password of the instance against which you want to trigger api test suite"
+            FIRSTPROJECTNAME: "firstProject"
+            FIRSTPROJECTKEY: "first"
+            SECONDPROJECTNAME: "secondProject"
+            SECONDPROJECTKEY: "second"
+        execution:
+          onStart:
+            - echo $KUBERNETES_PROJECT_INTEGRATION_KUBECONFIG_PATH
+
+
+
+      - name: test_set_100Steplets
+        type: Matrix
+        stepMode: Bash
+        configuration:
+          multiNode: true
+          environmentVariables:
+            timeoutSeconds: 21600
+            SKIP_GLOBAL_TEARDOWN: "true"
+            SKIP_SETUP: "true"
+          inputSteps:
+            - name: setup_prematrixTest1
+              status:
+                - success
+        stepletMultipliers:
+          environmentVariables:
+            - listOfTests: "core/api/deployKeys.js"
+            - listOfTests: "core/api/dynamicNodesMachineTypes.js"
+            - listOfTests: "core/api/environmentVariables.js"
+            - listOfTests: "core/api/events.js"
+            - listOfTests: "core/api/extensionSources.js"
+            - listOfTests: "core/api/apiHeader.js"
+            - listOfTests: "core/api/buildPlaneImages.js"
+            - listOfTests: "core/api/buildPlaneMessages.js"
+            - listOfTests: "core/api/cancelRun.js"
+            - listOfTests: "core/api/events.js"
+            - listOfTests: "core/api/extensionSources.js"
+            - listOfTests: "core/api/hooks.js"
+            - listOfTests: "core/api/identities.js"
+            - listOfTests: "core/api/identityFavorites.js"
+            - listOfTests: "core/api/identityRoles.js"
+            - listOfTests: "core/api/locks.js"
+            - listOfTests: "core/api/metrics.js"
+            - listOfTests: "core/api/microPipelineEvents.js"
+            - listOfTests: "core/api/microPipelines.js"
+            - listOfTests: "core/api/nodePools.js"
+            - listOfTests: "core/api/nodes.js"
+            - listOfTests: "core/api/nodeStats.js"
+            - listOfTests: "core/api/passthrough_pipeInfo.js"
+            - listOfTests: "core/api/passthrough.js"
+            - listOfTests: "core/api/passthroughAssignPermission.js"
+            - listOfTests: "core/api/passthroughPermission.js"
+            - listOfTests: "core/api/pipelineObjects.js"
+            - listOfTests: "core/api/pipelines.js"
+            - listOfTests: "core/api/pipelineSourceObjectPermissions.js"
+            - listOfTests: "core/api/pipelineStepConnections.js"
+            - listOfTests: "core/api/apiHeader.js"
+            - listOfTests: "core/api/buildPlaneImages.js"
+            - listOfTests: "core/api/buildPlaneMessages.js"
+            - listOfTests: "core/api/cancelRun.js"
+            - listOfTests: "core/api/events.js"
+            - listOfTests: "core/api/extensionSources.js"
+            - listOfTests: "core/api/hooks.js"
+            - listOfTests: "core/api/identities.js"
+            - listOfTests: "core/api/identityFavorites.js"
+            - listOfTests: "core/api/identityRoles.js"
+            - listOfTests: "core/api/locks.js"
+            - listOfTests: "core/api/metrics.js"
+            - listOfTests: "core/api/microPipelineEvents.js"
+            - listOfTests: "core/api/microPipelines.js"
+            - listOfTests: "core/api/nodePools.js"
+            - listOfTests: "core/api/nodes.js"
+            - listOfTests: "core/api/nodeStats.js"
+            - listOfTests: "core/api/passthrough_pipeInfo.js"
+            - listOfTests: "core/api/passthrough.js"
+            - listOfTests: "core/api/passthroughAssignPermission.js"
+            - listOfTests: "core/api/passthroughPermission.js"
+            - listOfTests: "core/api/pipelineObjects.js"
+            - listOfTests: "core/api/pipelines.js"
+            - listOfTests: "core/api/pipelineSourceObjectPermissions.js"
+            - listOfTests: "core/api/pipelineStepConnections.js"
+            - listOfTests: "core/api/apiHeader.js"
+            - listOfTests: "core/api/buildPlaneImages.js"
+            - listOfTests: "core/api/buildPlaneMessages.js"
+            - listOfTests: "core/api/cancelRun.js"
+            - listOfTests: "core/api/events.js"
+            - listOfTests: "core/api/extensionSources.js"
+            - listOfTests: "core/api/hooks.js"
+            - listOfTests: "core/api/identities.js"
+            - listOfTests: "core/api/identityFavorites.js"
+            - listOfTests: "core/api/identityRoles.js"
+            - listOfTests: "core/api/locks.js"
+            - listOfTests: "core/api/metrics.js"
+            - listOfTests: "core/api/microPipelineEvents.js"
+            - listOfTests: "core/api/microPipelines.js"
+            - listOfTests: "core/api/nodePools.js"
+            - listOfTests: "core/api/nodes.js"
+            - listOfTests: "core/api/nodeStats.js"
+            - listOfTests: "core/api/passthrough_pipeInfo.js"
+            - listOfTests: "core/api/passthrough.js"
+            - listOfTests: "core/api/passthroughAssignPermission.js"
+            - listOfTests: "core/api/passthroughPermission.js"
+            - listOfTests: "core/api/pipelineObjects.js"
+            - listOfTests: "core/api/pipelines.js"
+            - listOfTests: "core/api/pipelineSourceObjectPermissions.js"
+            - listOfTests: "core/api/pipelineStepConnections.js"
+            - listOfTests: "core/api/apiHeader.js"
+            - listOfTests: "core/api/buildPlaneImages.js"
+            - listOfTests: "core/api/buildPlaneMessages.js"
+            - listOfTests: "core/api/cancelRun.js"
+            - listOfTests: "core/api/events.js"
+            - listOfTests: "core/api/extensionSources.js"
+            - listOfTests: "core/api/hooks.js"
+            - listOfTests: "core/api/identities.js"
+            - listOfTests: "core/api/identityFavorites.js"
+            - listOfTests: "core/api/identityRoles.js"
+            - listOfTests: "core/api/locks.js"
+            - listOfTests: "core/api/metrics.js"
+            - listOfTests: "core/api/microPipelineEvents.js"
+            - listOfTests: "core/api/microPipelines.js"
+            - listOfTests: "core/api/nodePools.js"
+            - listOfTests: "core/api/nodes.js"
+            - listOfTests: "core/api/nodeStats.js"
+            - listOfTests: "core/api/passthrough_pipeInfo.js"
+            - listOfTests: "core/api/passthrough.js"
+            - listOfTests: "core/api/passthroughAssignPermission.js"
+            - listOfTests: "core/api/passthroughPermission.js"
+            - listOfTests: "core/api/pipelineObjects.js"
+            - listOfTests: "core/api/pipelines.js"
+            - listOfTests: "core/api/pipelineSourceObjectPermissions.js"
+            - listOfTests: "core/api/pipelineStepConnections.js"
+            - listOfTests: "core/api/apiHeader.js"
+            - listOfTests: "core/api/buildPlaneImages.js"
+            - listOfTests: "core/api/buildPlaneMessages.js"
+            - listOfTests: "core/api/cancelRun.js"
+            - listOfTests: "core/api/events.js"
+            - listOfTests: "core/api/extensionSources.js"
+            - listOfTests: "core/api/hooks.js"
+            - listOfTests: "core/api/identities.js"
+            - listOfTests: "core/api/identityFavorites.js"
+            - listOfTests: "core/api/identityRoles.js"
+            - listOfTests: "core/api/locks.js"
+            - listOfTests: "core/api/metrics.js"
+            - listOfTests: "core/api/microPipelineEvents.js"
+            - listOfTests: "core/api/microPipelines.js"
+            - listOfTests: "core/api/nodePools.js"
+            - listOfTests: "core/api/nodes.js"
+            - listOfTests: "core/api/nodeStats.js"
+            - listOfTests: "core/api/passthrough_pipeInfo.js"
+            - listOfTests: "core/api/passthrough.js"
+            - listOfTests: "core/api/passthroughAssignPermission.js"
+            - listOfTests: "core/api/passthroughPermission.js"
+            - listOfTests: "core/api/pipelineObjects.js"
+            - listOfTests: "core/api/pipelines.js"
+            - listOfTests: "core/api/pipelineSourceObjectPermissions.js"
+            - listOfTests: "core/api/pipelineStepConnections.js"
+            - listOfTests: "core/api/apiHeader.js"
+            - listOfTests: "core/api/buildPlaneImages.js"
+            - listOfTests: "core/api/buildPlaneMessages.js"
+            - listOfTests: "core/api/cancelRun.js"
+            - listOfTests: "core/api/events.js"
+            - listOfTests: "core/api/extensionSources.js"
+            - listOfTests: "core/api/hooks.js"
+            - listOfTests: "core/api/identities.js"
+            - listOfTests: "core/api/identityFavorites.js"
+            - listOfTests: "core/api/identityRoles.js"
+            - listOfTests: "core/api/locks.js"
+            - listOfTests: "core/api/metrics.js"
+            - listOfTests: "core/api/microPipelineEvents.js"
+            - listOfTests: "core/api/microPipelines.js"
+            - listOfTests: "core/api/nodePools.js"
+            - listOfTests: "core/api/nodes.js"
+            - listOfTests: "core/api/nodeStats.js"
+            - listOfTests: "core/api/passthrough_pipeInfo.js"
+            - listOfTests: "core/api/passthrough.js"
+
+        execution:
+          onExecute:
+            - echo "Executing matrix step on ${steplet_id}"
+
+      - name: teardown_postmatrix
+        type: PostMatrix
+        configuration:
+          inputSteps:
+            - name: test_set_100Steplets
+          environmentVariables:
+            SKIP_NPM_INSTALL: "false"
+            listOfTests: "core/api/nodes.js"
+          chronological: true
+        execution:
+          onStart:
+            - echo hello
