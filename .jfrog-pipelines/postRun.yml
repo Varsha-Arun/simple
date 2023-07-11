@@ -36,7 +36,7 @@ pipelines:
     postRun:
       configuration:
         integrations:
-          - name: test_ssh
+          - name: varsha_github
       execution:
         onExecute:
           - echo "Executing Pre Run"
