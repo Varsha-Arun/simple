@@ -1,0 +1,8 @@
+pipelines:
+  - name: S_PS_Generic_pipe
+    steps:
+      - name: S_PS_Generic_0044
+        type: PowerShell
+        execution:
+          onExecute:
+            - write-output "hi"
