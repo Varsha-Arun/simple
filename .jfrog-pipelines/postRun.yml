@@ -1,9 +1,9 @@
 resources:
-  - name: test_gitrepo_github
+  - name: test_gitr_github
     type: GitRepo
     configuration:
       gitProvider: varsha_github
-      path: Varsha-Arun/simple
+      path: Varsha-Arun/sample_python
 
 pipelines:           
   - name: PostRunHooksPipeline
@@ -27,7 +27,7 @@ pipelines:
         type: Bash
         configuration:
           inputResources:
-            - name: test_gitrepo_github
+            - name: test_gitr_github
           environmentVariables:
             key1: "value1"
             key2: "value2"
