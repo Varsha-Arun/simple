@@ -1,3 +1,10 @@
+resources:
+  - name: test_gitrepo_github
+    type: GitRepo
+    configuration:
+      gitProvider: varsha_github
+      path: Varsha-Arun/simple
+
 pipelines:           
   - name: PostRunHooksPipeline
     configuration:
@@ -19,6 +26,8 @@ pipelines:
       - name: stepInBetweenPreAndPostRun
         type: Bash
         configuration:
+          inputResources:
+            - name: test_gitrepo_github
           environmentVariables:
             key1: "value1"
             key2: "value2"
