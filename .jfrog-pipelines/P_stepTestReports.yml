@@ -3,7 +3,7 @@ resources:
     type: GitRepo
     configuration:
       gitProvider: varsha_github
-      path: Varsha-Arun/Org_test_Automation
+      path: Varsha-Arun/simple
 
 pipelines:
   - name: P_stepTestReports
