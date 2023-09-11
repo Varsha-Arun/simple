@@ -1,55 +1,67 @@
-resources:
-  - name: test_gitr_github
-    type: GitRepo
-    configuration:
-      gitProvider: varsha_github
-      path: Varsha-Arun/sample_python
-
 pipelines:           
-  - name: PostRunHooksPipeline
-    configuration:
-      environmentVariables:
-        readOnly:
-          TEST_ENV: "pipelines"
-          JUST_FES: "options"
-          LOL_FOO: "test"
-    preRun:
-      execution:
-        onExecute:
-          - printenv
-          - echo "Executing Pre Run"
-          - echo "new"
-          - set_run_name 'pre run name'
-          - update_run_description 'pre run desc'
+  - name: simplePipelines
           
     steps:
-      - name: stepInBetweenPreAndPostRun
+      - name: simpleStep
         type: Bash
-        configuration:
-          inputResources:
-            - name: test_gitr_github
-          environmentVariables:
-            key1: "value1"
-            key2: "value2"
-            key3: "value3"
         execution:
           onExecute:
-            - echo $TEST_ENV
-            - echo $JUST_FES
-            - echo $LOL_FOO
-            - echo $key1
-            - echo $key2
-            - echo $key3
-            - exit 1
+            - echo test
+
+
+
+# resources:
+#   - name: test_gitr_github
+#     type: GitRepo
+#     configuration:
+#       gitProvider: varsha_github
+#       path: Varsha-Arun/sample_python
+
+# pipelines:           
+#   - name: PostRunHooksPipeline
+#     configuration:
+#       environmentVariables:
+#         readOnly:
+#           TEST_ENV: "pipelines"
+#           JUST_FES: "options"
+#           LOL_FOO: "test"
+#     preRun:
+#       execution:
+#         onExecute:
+#           - printenv
+#           - echo "Executing Pre Run"
+#           - echo "new"
+#           - set_run_name 'pre run name'
+#           - update_run_description 'pre run desc'
+          
+#     steps:
+#       - name: stepInBetweenPreAndPostRun
+#         type: Bash
+#         configuration:
+#           inputResources:
+#             - name: test_gitr_github
+#           environmentVariables:
+#             key1: "value1"
+#             key2: "value2"
+#             key3: "value3"
+#         execution:
+#           onExecute:
+#             - echo $TEST_ENV
+#             - echo $JUST_FES
+#             - echo $LOL_FOO
+#             - echo $key1
+#             - echo $key2
+#             - echo $key3
+#             - exit 1
             
-    postRun:
-      configuration:
-        integrations:
-          - name: varsha_github
-      execution:
-        onExecute:
-          - echo "Executing Pre Run"
-          - echo "new"
-          - echo ${int_test_ssh_publicKey}
-          - set_run_name 'post run name'
-          - update_run_description 'test post run desc'
+#     postRun:
+#       configuration:
+#         integrations:
+#           - name: varsha_github
+#       execution:
+#         onExecute:
+#           - echo "Executing Pre Run"
+#           - echo "new"
+#           - echo ${int_test_ssh_publicKey}
+#           - set_run_name 'post run name'
+#           - update_run_description 'test post run desc'
