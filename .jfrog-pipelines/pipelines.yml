@@ -1,9 +1,12 @@
 pipelines:           
-  - name: simplePipelines
+  - name: sshkeyIntegration
           
     steps:
-      - name: simpleStep
+      - name: sshkeyIntegrationStep
         type: Bash
+        configuration:
+          integrations:
+            - name: sshKeyInt
         execution:
           onExecute:
             - echo test
