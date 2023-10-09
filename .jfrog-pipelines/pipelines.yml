@@ -1,8 +1,8 @@
 pipelines:           
-  - name: sshkeyIntegration
+  - name: sshkeyIntegrationps
           
     steps:
-      - name: sshkeyIntegrationStep
+      - name: sshkeyIntegrationStepps
         type: Bash
         configuration:
           integrations:
