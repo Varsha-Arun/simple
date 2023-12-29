@@ -1,6 +1,6 @@
 pipelines:
   - name: jenkins_testvarsha
-  steps:
+    steps:
     - name: jfrog_jenkins_pipelines
       type: Jenkins
       configuration:
