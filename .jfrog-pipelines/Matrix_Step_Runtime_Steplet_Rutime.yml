@@ -3,22 +3,20 @@ pipelines:
     steps:
       - name: matrix_1test
         type: Matrix
-        configuration:
-          runtime:
-            type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - '16'
         stepletMultipliers:
           runtimes:
-          - type: image
-            image:
-              auto:
-                language: node
-                versions:
-                  - '17'
+            - type: image
+              image:
+                auto:
+                  language: node
+                  versions:
+                    - '17'
+            - type: image
+              image:
+                auto:
+                  language: node
+                  versions:
+                    - '16'
           environmentVariables:
             - name1: test1
             - name2: test2
