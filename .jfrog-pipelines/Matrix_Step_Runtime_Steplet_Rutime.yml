@@ -24,15 +24,15 @@ pipelines:
             - name4: test4
           exclude:
             - environmentVariables:
-                name1: test1
-                name2: test2
+                - name1: test1
+                - name2: test2
               runtime: 
-                type: image
-                image:
-                  auto:
-                    language: node
-                    versions:
-                      - '18'
+                - type: image
+                  image:
+                    auto:
+                      language: node
+                      versions:
+                        - '18'
         execution:
           onExecute:
             - echo Im executing
