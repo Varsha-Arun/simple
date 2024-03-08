@@ -1,0 +1,33 @@
+pipelines:
+  - name: Matrix_Step_Runtime_Steplet_Rutimetest
+    steps:
+      - name: matrix_1test
+        type: Matrix
+        configuration:
+          runtime:
+            type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '16'
+        stepletMultipliers:
+          runtimes:
+          - type: image
+            image:
+              auto:
+                language: node
+                versions:
+                  - '17'
+          environmentVariables:
+            - name1: test1
+            - name2: test2
+        execution:
+          onExecute:
+            - echo Im executing
+          onSuccess:
+            - echo 'i am onsuccess'
+          onFailure:
+            - echo 'i am onfailure'
+          onComplete:
+            - echo 'i am oncomplete'
